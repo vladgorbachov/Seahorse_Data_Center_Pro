@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deck Department</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'deck/css/deck_department.css' %}">
+    <style>
+        body, html {
+            background: url("{% static 'background/bridge_bgrd.png' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="backButton" onclick="window.history.back();">BACK</button>
+        <h1>DECK DEPARTMENT</h1>
+    </header>
+    <main>
+        <div id="foldersContainer" class="grid-container">
+            {% for folder in folders|dictsort:"index" %}
+            <div class="folder" data-id="{{ folder.id }}" data-index="{{ folder.index }}" data-url="{{ folder.link }}">
+                {{ folder.name }}
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+        <button id="createFolderButton">CREATE FOLDER</button>
+    </footer>
+    <div class="input-window">
+        <h2>PLEASE ENTER A FOLDER NAME</h2>
+        <input type="text" id="folderNameInput" placeholder="Folder Name">
+        <div class="button-group">
+            <button id="inputSaveButton">SAVE</button>
+            <button id="inputCloseButton">CLOSE</button>
+        </div>
+    </div>
+
+    <script src="{% static 'deck/js/deck_department.js' %}"></script>
+</body>
+</html>

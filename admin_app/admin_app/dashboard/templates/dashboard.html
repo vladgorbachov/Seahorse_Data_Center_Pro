@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEAHORSE DATA CENTER</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap');
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .bg-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5vw;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 4s;
+        }
+
+        .header-text .line {
+            display: block;
+        }
+
+        .header-text .line2 {
+            margin-top: 20px;
+        }
+
+        .header-text.fade-in {
+            opacity: 1;
+        }
+
+        :root {
+            --glow-color: #7DF9FF;
+            --glow-intensity: 10;
+            --animation-speed: 5s;
+            --link-color: #FFFFFF;
+            --link-font-size: 2vw;
+            --link-margin: 10px;
+            --link-padding: 10px;
+            --shadow-intensity: 10px;
+        }
+
+        @keyframes color-shift {
+            0% {
+                background: linear-gradient(#FFFFFF, #F0FFFF);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            50% {
+                background: linear-gradient(#7DF9FF, #F0FFFF);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            100% {
+                background: linear-gradient(#FFFFFF, #F0FFFF);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        .department-text {
+            position: absolute;
+            right: -100%;
+            background: linear-gradient(#7DF9FF, #F0FFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.8;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4vw;
+            font-weight: bold;
+            text-align: right;
+            white-space: nowrap;
+            animation: fly-in 2s forwards, color-shift var(--animation-speed) infinite;
+            text-shadow: 0 0 calc(10px * var(--glow-intensity)) var(--glow-color),
+                         0 0 calc(20px * var(--glow-intensity)) var (--glow-color),
+                         0 0 calc(30px * var(--glow-intensity)) var(--glow-color);
+            transition: text-shadow 0.3s;
+        }
+
+        .department-text:hover {
+            text-shadow: 0 0 calc(var(--shadow-intensity) * 1) var(--glow-color),
+                         0 0 calc(var(--shadow-intensity) * 2) var(--glow-color),
+                         0 0 calc(var(--shadow-intensity) * 3) var(--glow-color);
+        }
+
+        .department-text .line {
+            display: block;
+        }
+
+        .department-text .line2 {
+            margin-top: 120px;
+        }
+
+        @keyframes fly-in {
+            from {
+                right: -100%;
+                opacity: 0;
+            }
+            to {
+                right: 2vw;
+                opacity: 0.8;
+            }
+        }
+
+        .deck-department {
+            top: 14vh;
+            animation-delay: 0s;
+        }
+
+        .bridge-department {
+            top: 26vh;
+            animation-delay: 1s;
+        }
+
+        .catering-department {
+            top: 38vh;
+            animation-delay: 2s;
+        }
+
+        .engineering-department {
+            top: 50vh;
+            animation-delay: 3s;
+        }
+
+        .electrical-engineering-department {
+            top: 62vh;
+            animation-delay: 4s;
+            line-height: 1.2;
+        }
+
+        .electrical-engineering-department .line2 {
+            margin-top: 0;
+        }
+
+        .department-text .line2-gradient {
+            background: linear-gradient(#7DF9FF, #F0FFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 calc(10px * var(--glow-intensity)) var(--glow-color),
+                         0 0 calc(20px * var(--glow-intensity)) var(--glow-color),
+                         0 0 calc(30px * var(--glow-intensity)) var(--glow-color);
+            animation: color-shift var(--animation-speed) infinite;
+        }
+
+        .links {
+            position: absolute;
+            bottom: 2vh;
+            left: 2vw;
+            color: var(--link-color);
+            font-size: var(--link-font-size);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .links a {
+            color: var(--link-color);
+            margin: var(--link-margin);
+            padding: var(--link-padding);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: #00FFFF;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <div class="bg-video">
+        <video autoplay muted loop>
+            <source src="{% static 'video/DashboardBackground.mp4' %}" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+    <div class="header-text">
+        <span class="line">SEAHORSE DATA</span>
+        <span class="line line2">CENTER</span>
+    </div>
+    <a href="{% url 'deck_department' %}">
+    <div class="department-text deck-department">
+        <span class="line">DECK DEPARTMENT</span>
+    </div>
+    </a>
+    <div class="department-text bridge-department">
+        <span class="line">BRIDGE DEPARTMENT</span>
+    </div>
+    <div class="department-text catering-department">
+        <span class="line">CATERING DEPARTMENT</span>
+    </div>
+    <div class="department-text engineering-department">
+        <span class="line">ENGINEERING DEPARTMENT</span>
+    </div>
+    <div class="department-text electrical-engineering-department">
+        <span class="line">ELECTRICAL ENGINEERING</span>
+        <span class="line2">DEPARTMENT</span>
+    </div>
+    <div class="links">
+        <a href="https://apprise.deme-group.com/dashboard/overview" id="apprise" target="_blank">APPRISE</a>
+        <a href="https://old-vms-url.com" id="old-vms" target="_blank">OLD VMS</a>
+        <a href="https://www.imca-int.com" id="imca" target="_blank">IMCA</a>
+        <a href="https://imo.org" id="imo" target="_blank">IMO</a>
+        <a href="https://jr.chemwatch.net/chemwatch.web/Account/Login" id="chemwatch" target="_blank">CHEMWATCH</a>
+    </div>
+    <script>
+        window.onload = function() {
+            document.querySelector('.header-text').classList.add('fade-in');
+        };
+    </script>
+</body>
+</html>

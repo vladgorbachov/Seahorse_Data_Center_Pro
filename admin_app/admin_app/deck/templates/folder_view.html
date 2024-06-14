@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ folder.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'deck/css/deck_department.css' %}">
+    <style>
+        body, html {
+            background: url("{% static 'background/bridge_bgrd.png' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="backButton" onclick="window.history.back();">BACK</button>
+        <h1>{{ folder.name }}</h1>
+    </header>
+    <main>
+        <!-- Добавьте контент, специфичный для папки здесь -->
+        <p>Content for {{ folder.name }}</p>
+    </main>
+    <script>
+        // Очищаем sessionStorage при входе на страницу папки
+        sessionStorage.removeItem('newFolders');
+    </script>
+</body>
+</html>
