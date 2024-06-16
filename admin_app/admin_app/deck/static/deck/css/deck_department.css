@@ -65,13 +65,33 @@ button:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(255, 255, 255, 0.7);
 }
 
+/* Стили для кнопки TABLE */
+#tableButton {
+    background: linear-gradient(to bottom right, #1e90ff, #ffffff);
+    border: none;
+    padding: 10px 20px;
+    color: #000;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 10px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(255, 255, 255, 0.5);
+    position: absolute;
+    right: 20px;
+}
+
+#tableButton:hover {
+    background: linear-gradient(to bottom right, #1e90ff, #ffffff);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(255, 255, 255, 0.7);
+}
+
 /* Основная часть */
 main {
     flex: 1;
     display: flex;
     justify-content: left;
     align-items: flex-start;
-    padding: 70px;
+    padding: 60px;
     position: relative;
     z-index: 1;
     height: calc(100vh - 160px); /* Фиксируем расстояние между хедером и футером */
@@ -83,7 +103,7 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, auto);
-    gap: 60px; /* Настраиваемое расстояние между колонками и строками */
+    gap: 40px; /* Настраиваемое расстояние между колонками и строками */
     position: relative;
     z-index: 1;
     width: 80%;
@@ -120,6 +140,8 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
+    display: flex;
+    justify-content: space-between;
 }
 
 footer button {
@@ -136,6 +158,14 @@ footer button {
 footer button:hover {
     background: linear-gradient(to bottom right, #1e90ff, #ffffff);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(255, 255, 255, 0.7);
+}
+
+#saveTableButton {
+    margin-left: 20px;
+}
+
+#deleteTableButton {
+    margin-right: 20px;
 }
 
 /* Стили для контекстного меню */

@@ -4,14 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const inputWindow = document.querySelector('.input-window');
     const folderNameInput = document.getElementById('folderNameInput');
-    const inputOkButton = document.getElementById('inputOkButton');
+    const inputSaveButton = document.getElementById('inputSaveButton');
+    const inputCloseButton = document.getElementById('inputCloseButton');
 
     createFolderButton.addEventListener('click', () => {
         inputWindow.style.display = 'block';
         folderNameInput.focus();
     });
 
-    inputOkButton.addEventListener('click', () => {
+    inputSaveButton.addEventListener('click', () => {
         const folderName = folderNameInput.value.trim();
         if (folderName) {
             getMaxFolderIndex().then(maxIndex => {
@@ -31,12 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    inputCloseButton.addEventListener('click', () => {
+        inputWindow.style.display = 'none';
+        folderNameInput.value = ''; // Очистить поле ввода
+    });
+
     function addFolderEventHandlers(folder) {
         folder.addEventListener('dblclick', () => {
             const folderId = folder.dataset.id;
-            updateFolderVisibility(folderId, false).then(() => {
-                window.location.href = `/deck/folder/${folderId}/`;
-            });
+            window.location.href = `/deck/folder/${folderId}/`;
         });
 
         folder.addEventListener('contextmenu', (e) => {
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const menu = document.createElement('div');
-            menu.className = 'context-menu dropdown-content'; // Используем тот же стиль, что и для дропдаун меню
+            menu.className = 'context-menu dropdown-content';
             menu.innerHTML = `
                 <a href="#" class="open">Open</a>
                 <a href="#" class="rename">Rename</a>
@@ -68,9 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             openLink.addEventListener('click', () => {
                 const folderId = folder.dataset.id;
-                updateFolderVisibility(folderId, false).then(() => {
-                    window.location.href = `/deck/folder/${folderId}/`;
-                });
+                window.location.href = `/deck/folder/${folderId}/`;
             });
 
             renameLink.addEventListener('click', () => {
@@ -177,21 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             console.log('Folder deleted:', data);
-        });
-    }
-
-    function updateFolderVisibility(id, visible) {
-        return fetch(`/deck/update_folder/${id}/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken')
-            },
-            body: JSON.stringify({ visible: visible })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Folder visibility updated:', data);
         });
     }
 

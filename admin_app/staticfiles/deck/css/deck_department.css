@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Trebuchet MS', sans-serif;
     display: flex;
     flex-direction: column;
     color: #ffffff;
@@ -25,13 +25,14 @@ header h1 {
     margin: 0;
     text-align: center;
     flex-grow: 1;
-    font-size: 2em;
+    font-size: 3em;
 }
 
 /* Стили для кнопок */
-button, .dropdown {
+button {
     background: linear-gradient(to bottom right, #1e90ff, #ffffff);
     border: none;
+    z-index: 9999; /* Очень высокое значение z-index */
     padding: 10px 20px;
     color: #000;
     cursor: pointer;
@@ -41,7 +42,7 @@ button, .dropdown {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(255, 255, 255, 0.5);
 }
 
-button:hover, .dropdown:hover {
+button:hover {
     background: linear-gradient(to bottom right, #1e90ff, #ffffff);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(255, 255, 255, 0.7);
 }
@@ -64,63 +65,67 @@ button:hover, .dropdown:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(255, 255, 255, 0.7);
 }
 
-/* Dropdown Content */
-/* Стили для выпадающего меню */
-.dropdown-content {
-    display: none; /* Изначально скрыто */
-    position: absolute; /* Абсолютное позиционирование */
-    background-color: rgba(255, 255, 255, 0.3); /* Фон с прозрачностью */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Тень */
-    z-index: 1; /* Поверх других элементов */
-    top: 60px; /* Расстояние от триггера (регулируемое) */
-    width: 200px; /* Ширина окна меню (регулируемая) */
-    font-family: 'Arial', sans-serif; /* Тип шрифта (регулируемый) */
-    font-size: 16px; /* Размер текста (регулируемый) */
-    text-align: center; /* Центрирование текста по горизонтали */
+/* Стили для кнопки TABLE */
+#tableButton {
+    background: linear-gradient(to bottom right, #1e90ff, #ffffff);
+    border: none;
+    padding: 10px 20px;
+    color: #000;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 10px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(255, 255, 255, 0.5);
+    position: absolute;
+    right: 20px;
 }
 
-/* Стили для пунктов меню */
-.dropdown-content a {
-    color: black; /* Цвет текста */
-    padding: 12px 16px; /* Внутренние отступы */
-    text-decoration: none; /* Убираем подчеркивание */
-    display: block; /* Блочный элемент */
-    width: 100%; /* Ширина 100% */
-    box-sizing: border-box; /* Учитываем padding и border */
-}
-
-.dropdown-content a:hover {
-    background-color: rgba(255, 255, 255, 0.5); /* Фон при наведении */
+#tableButton:hover {
+    background: linear-gradient(to bottom right, #1e90ff, #ffffff);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(255, 255, 255, 0.7);
 }
 
 /* Основная часть */
 main {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: flex-start;
-    padding: 20px;
+    padding: 60px;
+    position: relative;
+    z-index: 1;
+    height: calc(100vh - 160px); /* Фиксируем расстояние между хедером и футером */
+    overflow: hidden; /* Убираем увеличение тела main */
+    overflow-y: auto; /* Добавляем прокрутку */
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, auto);
-    gap: 60px; /* Настраиваемое расстояние между колонками и строками */
+    gap: 40px; /* Настраиваемое расстояние между колонками и строками */
+    position: relative;
+    z-index: 1;
+    width: 80%;
+    height: 100%; /* Занимаем всю доступную высоту */
 }
 
 .folder {
-    width: 455px; /* Увеличено на 30% от 350px */
-    height: 130px; /* Увеличено на 30% от 100px */
+    position: relative; /* Добавлено относительное позиционирование */
+    width: 20vw; /* Ширина 30% от ширины экрана */
+    aspect-ratio: 1.5 / 0.8; /* Соотношение сторон 3:1 */
     background: linear-gradient(to bottom right, #BBBBBE, #040405); /* Градиент */
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 3px ridge rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
     color: #ffffff;
+    z-index: 1; /* Добавлен z-index */
     cursor: pointer;
     transition: background 0.3s ease;
+    font-size: var(--folder-font-size, 28px); /* Используем CSS переменные */
+    font-family: var(--folder-font-family, 'Trebuchet MS', sans-serif); /* Используем CSS переменные */
 }
 
 .folder:hover {
@@ -156,13 +161,14 @@ footer button:hover {
 /* Стили для контекстного меню */
 .context-menu {
     display: none;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.3);
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 10000; /* Увеличиваем z-index для контекстного меню */
-    width: 200px; /* Ширина окна меню */
-    font-family: 'Arial', sans-serif; /* Тип шрифта */
-    font-size: 16px; /* Размер текста */
+    height: 180px;
+    width: 130px; /* Ширина окна меню */
+    font-family: 'Trebuchet MS', sans-serif; /* Тип шрифта */
+    font-size: 18px; /* Размер текста */
     text-align: center; /* Центрирование текста */
 }
 
@@ -214,45 +220,81 @@ footer button:hover {
 /* Стили для окна ввода имени папки */
 .input-window {
     display: none;
-    position: fixed; /* Изменено на fixed для центрирования окна */
-    top: 50%; /* Центрирование по вертикали */
-    left: 50%; /* Центрирование по горизонтали */
-    transform: translate(-50%, -50%); /* Смещение на 50% ширины и высоты для точного центрирования */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: linear-gradient(to bottom right, #1e90ff, #000000);
     border-radius: 15px;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #888;
     color: white;
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
 }
 
 .input-window h2 {
-    margin: 0 0 10px 0;
+    margin: 0 0 20px 0; /* Увеличен нижний отступ для центрирования */
     font-size: 1em;
 }
 
 .input-window input[type="text"] {
-    width: 95%;
-    padding: 5px;
+    width: calc(100% - 33px); /* Учитываем padding контейнера */
+    padding: 15px;
     margin: 5px 0;
     border-radius: 10px;
     border: 1px solid #ccc;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Увеличен отступ между кнопками и полем ввода */
+}
+
 .input-window button {
     background: linear-gradient(to bottom right, #1e90ff, #000000);
     border: none;
-    padding: 5px 15px;
+    padding: 10px 30px;
     color: white;
     cursor: pointer;
     transition: background 0.3s ease, box-shadow 0.3s ease;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(255, 255, 255, 0.5);
+    margin: 0 10px; /* Добавлен отступ между кнопками */
 }
 
 .input-window button:hover {
     background: linear-gradient(to bottom right, #1e90ff, #000000);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Стили для заголовков папок */
+.folder-title {
+    font-size: var(--folder-title-font-size, 18px); /* Размер шрифта (по умолчанию 16px) */
+    color: var(--folder-title-color, #ffffff); /* Цвет текста (по умолчанию белый) */
+    font-family: var(--folder-title-font-family, 'Trebuchet MS', sans-serif); /* Шрифт (по умолчанию Arial) */
+}
+
+/* Стили для кнопок */
+button, #backButton {
+    font-size: var(--button-font-size, 18px); /* Размер шрифта (по умолчанию 14px) */
+    color: var(--button-text-color, #000); /* Цвет текста (по умолчанию черный) */
+    font-family: var(--button-font-family, 'Trebuchet MS', sans-serif); /* Шрифт (по умолчанию Arial) */
+}
+
+/* Стили для контекстного меню */
+.context-menu {
+    font-size: var(--context-menu-font-size, 18px); /* Размер шрифта (по умолчанию 14px) */
+    color: var(--context-menu-text-color, #000); /* Цвет текста (по умолчанию черный) */
+    font-family: var(--context-menu-font-family, 'Trebuchet MS', sans-serif); /* Шрифт (по умолчанию Arial) */
+}
+
+/* Стили для пунктов меню */
+.context-menu a {
+    font-size: var(--menu-item-font-size, 18px); /* Размер шрифта (по умолчанию 14px) */
+    color: var(--menu-item-text-color, #000); /* Цвет текста (по умолчанию черный) */
+    font-family: var(--menu-item-font-family, 'Trebuchet MS', sans-serif); /* Шрифт (по умолчанию Arial) */
 }

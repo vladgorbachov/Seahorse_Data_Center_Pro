@@ -3,42 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ folder.name }}</title>
+    <title>Table View</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'deck/css/deck_department.css' %}">
     <link rel="stylesheet" href="{% static 'deck/css/table_view.css' %}">
-    <link rel="icon" href="{% static 'deck/shortcuts/favicon.ico' %}" type="image/x-icon">
-    <style>
-        body, html {
-            background: url("{% static 'background/bridge_bgrd.png' %}") no-repeat center center fixed;
-            background-size: cover;
-        }
-    </style>
 </head>
 <body>
     <header>
         <button id="backButton" onclick="window.history.back();">BACK</button>
-        <h1>{{ folder.name }}</h1>
-        <button id="tableButton">TABLE</button>
+        <h1>{{ folder.name }} - Table</h1>
     </header>
     <main>
         {% if table %}
-        <table>
+        <table id="dataTable">
             {% for row in table.rows %}
             <tr>
-                {% for cell in row.cells %}
+                {% for column in table.columns %}
                 <td contenteditable="true" data-cell-id="{{ cell.id }}">{{ cell.content }}</td>
                 {% endfor %}
             </tr>
             {% endfor %}
         </table>
+        {% else %}
+        <p>No table found. Create one using the button below.</p>
         {% endif %}
     </main>
     <footer>
         <button id="saveTableButton">SAVE</button>
-        <button id="deleteTableButton">DELETE</button>
+        <button id="deleteTableButton">DELETE TABLE</button>
     </footer>
-    <div class="input-window" id="tableInputWindow">
+    <div class="input-window">
         <h2>Please enter table dimensions</h2>
         <label for="tableRows">Rows</label>
         <input type="number" id="tableRows">
@@ -49,9 +42,6 @@
             <button id="cancelTableDimensionsButton">CANCEL</button>
         </div>
     </div>
-    <script>
-        const folderId = {{ folder.id }};
-    </script>
     <script src="{% static 'deck/js/table_view.js' %}"></script>
 </body>
 </html>
