@@ -6,7 +6,7 @@ body, html {
     font-family: 'Trebuchet MS', sans-serif;
     display: flex;
     flex-direction: column;
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 /* Стиль хедера */
@@ -102,12 +102,13 @@ main {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); /* Автоматическое заполнение строк */
     gap: 40px; /* Настраиваемое расстояние между колонками и строками */
     position: relative;
     z-index: 1;
-    width: 80%;
-    height: 100%; /* Занимаем всю доступную высоту */
+    width: calc(100% - 260px); /* Ширина grid-container с учетом ширины side-panel и отступов */
+    height: auto; /* Занимаем всю доступную высоту */
+    padding-bottom: 20px; /* Отступ снизу, чтобы не перекрывать футер */
 }
 
 .folder {
@@ -130,6 +131,18 @@ main {
 
 .folder:hover {
     background: rgba(255, 255, 255, 0.5);
+}
+
+.side-panel {
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    padding: 40px;
+    margin-left: 40px; /* Отступ слева от grid-container */
+    display: flex;
+    flex-direction: column;
+    height: calc(60vh); /* Фиксируем расстояние между хедером и футером */
+    justify-content: space-between;
 }
 
 /* Стиль футера */
@@ -308,3 +321,4 @@ button, #backButton {
     color: var(--menu-item-text-color, #000); /* Цвет текста (по умолчанию черный) */
     font-family: var(--menu-item-font-family, 'Trebuchet MS', sans-serif); /* Шрифт (по умолчанию Arial) */
 }
+

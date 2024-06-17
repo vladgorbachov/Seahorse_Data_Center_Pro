@@ -40,7 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function addFolderEventHandlers(folder) {
         folder.addEventListener('dblclick', () => {
             const folderId = folder.dataset.id;
-            window.location.href = `/deck/folder/${folderId}/`;
+            if (folderId) {
+                window.location.href = `/deck/folder/${folderId}/`;
+            } else {
+                console.error('Folder ID is missing');
+            }
         });
 
         folder.addEventListener('contextmenu', (e) => {
@@ -72,7 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             openLink.addEventListener('click', () => {
                 const folderId = folder.dataset.id;
-                window.location.href = `/deck/folder/${folderId}/`;
+                if (folderId) {
+                    window.location.href = `/deck/folder/${folderId}/`;
+                } else {
+                    console.error('Folder ID is missing');
+                }
+                document.body.removeChild(menu);
             });
 
             renameLink.addEventListener('click', () => {
@@ -107,9 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (url) {
                         folder.dataset.url = url;
                         folder.addEventListener('click', () => {
-                            window.location.href = folder.dataset.url;
+                            if (url.startsWith('file://')) {
+                                openLocalDirectory(url);
+                            } else {
+                                window.location.href = url;
+                            }
                         });
-                        updateFolderOnServer(folder.dataset.id, { link: url });
+                        updateFolderOnServer(folder.dataset.id, { link: url }).then(() => {
+                            showAlert('Link added successfully');
+                        });
                     }
                     folder.removeChild(linkInput);
                 });
@@ -150,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateFolderOnServer(id, updates) {
-        fetch(`/deck/update_folder/${id}/`, {
+        return fetch(`/deck/update_folder/${id}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -200,3 +215,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Добавляем обработчики событий ко всем существующим папкам
     document.querySelectorAll('.folder').forEach(addFolderEventHandlers);
 });
+
+function openLocalDirectory(url) {
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.click();
+}
+
+function showAlert(message) {
+    const alertBox = document.createElement('div');
+    alertBox.className = 'alert-box';
+    alertBox.textContent = message;
+    document.body.appendChild(alertBox);
+    setTimeout(() => {
+        document.body.removeChild(alertBox);
+    }, 3000);
+}

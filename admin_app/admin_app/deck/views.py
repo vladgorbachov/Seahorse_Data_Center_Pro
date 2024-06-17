@@ -17,7 +17,10 @@ def add_folder(request):
         if existing_folder and existing_folder.link:
             return JsonResponse({'status': 'error', 'message': 'Link already exists'})
 
-        folder = Folder(index=data['index'], name=data['name'], link=data.get('link', ''), visible=True)
+        link = data.get('link', '')
+        is_local_link = link.startswith('file://')
+
+        folder = Folder(index=data['index'], name=data['name'], link=link, is_local_link=is_local_link, visible=True)
         folder.save()
         return JsonResponse({'status': 'success', 'id': folder.id, 'message': 'Link added!'})
 
@@ -28,6 +31,7 @@ def update_folder(request, folder_id):
         folder = Folder.objects.get(id=folder_id)
         folder.name = data.get('name', folder.name)
         folder.link = data.get('link', folder.link)
+        folder.is_local_link = folder.link.startswith('file://')
         folder.visible = data.get('visible', folder.visible)
         folder.save()
         return JsonResponse({'status': 'success'})
@@ -41,7 +45,7 @@ def delete_folder(request, folder_id):
 
 def folder_view(request, folder_id):
     folder = get_object_or_404(Folder, id=folder_id)
-    table = Table.objects.filter(folder=folder).first()
+    table = Table.objects.filter(folder=folder).select_related('folder').first()
     rows = []
     table_id = None
     if table:

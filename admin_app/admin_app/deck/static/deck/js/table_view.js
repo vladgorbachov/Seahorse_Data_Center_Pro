@@ -26,8 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
         tableInputWindow.style.display = 'none';
     });
 
+    function fetchWithTimeout(url, options, timeout = 7000) {
+        return Promise.race([
+            fetch(url, options),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), timeout))
+        ]);
+    }
+
     function createTable(rows, columns) {
-        fetch('/deck/save_table/', {
+        fetchWithTimeout('/deck/save_table/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 alert('Error creating table');
             }
-        });
+        })
+        .catch(error => console.error('Error:', error));
     }
 
     saveTableButton.addEventListener('click', () => {
@@ -54,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 content: cell.textContent
             });
         });
-        fetch('/deck/save_table_data/', {
+        fetchWithTimeout('/deck/save_table_data/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,13 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 alert('Error saving table data');
             }
-        });
+        })
+        .catch(error => console.error('Error:', error));
     });
 
     deleteTableButton.addEventListener('click', () => {
         const confirmDelete = confirm('Are you sure you want to delete this table?');
         if (confirmDelete) {
-            fetch(`/deck/delete_table_in_folder/${folderId}/`, {
+            fetchWithTimeout(`/deck/delete_table_in_folder/${folderId}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,7 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     alert(data.message);
                 }
-            });
+            })
+            .catch(error => console.error('Error:', error));
         }
     });
 
