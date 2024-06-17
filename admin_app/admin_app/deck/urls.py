@@ -11,6 +11,6 @@ urlpatterns = [
     path('table_view/<int:folder_id>/', views.table_view, name='table_view'),
     path('save_table/', views.save_table, name='save_table'),
     path('save_table_data/', views.save_table_data, name='save_table_data'),
-    path('delete_table/<int:table_id>/', views.delete_table, name='delete_table'),
+    path('delete_table_in_folder/<int:folder_id>/', views.delete_table_in_folder, name='delete_table_in_folder'),
 ]
 

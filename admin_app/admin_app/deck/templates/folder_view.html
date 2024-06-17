@@ -51,6 +51,7 @@
     </div>
     <script>
         const folderId = {{ folder.id }};
+        const tableId = {{ table_id|default:"null" }};  // Добавляем tableId
     </script>
     <script src="{% static 'deck/js/table_view.js' %}"></script>
 </body>

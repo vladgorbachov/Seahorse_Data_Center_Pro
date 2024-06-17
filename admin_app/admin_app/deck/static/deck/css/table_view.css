@@ -1,46 +1,22 @@
-/* Стили таблицы */
+/* Table Styles */
 table {
     width: calc(100% - 80px);
     margin: 20px auto;
     border-collapse: collapse;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Тень вокруг таблицы */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Граница вокруг таблицы */
-    background: linear-gradient(to bottom right, #f8f9fa, #e9ecef); /* Градиентный цвет фона таблицы */
-    border-radius: 12px; /* Закругленные углы таблицы */
-    overflow: hidden; /* Обрезаем содержимое за пределами границ */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 td {
-    border: 1px solid #ddd; /* Границы ячеек */
+    border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
     min-width: 50px;
     min-height: 50px;
-    background-color: #f9f9f9; /* Цвет фона ячеек */
-    color: #000000; /* Цвет текста */
-    font-size: 18px; /* Размер текста */
 }
 
 td[contenteditable="true"] {
-    background-color: #f9f9f9; /* Цвет фона редактируемых ячеек */
+    background-color: #f9f9f9;
 }
-
-/* Добавление эффекта выпуклого стекла */
-table {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(255, 255, 255, 0.5);
-    border-radius: 12px;
-}
-
-table:hover {
-    background: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), inset 0 -6px 8px rgba(255, 255, 255, 0.6);
-}
-
-
 
 .input-window {
     display: none;

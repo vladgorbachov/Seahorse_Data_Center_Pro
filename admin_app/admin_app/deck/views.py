@@ -43,27 +43,31 @@ def folder_view(request, folder_id):
     folder = get_object_or_404(Folder, id=folder_id)
     table = Table.objects.filter(folder=folder).first()
     rows = []
+    table_id = None
     if table:
+        table_id = table.id
         for row_number in range(table.rows):
             row = []
             for column_number in range(table.columns):
-                cell = TableCell.objects.get(table=table, row=row_number, column=column_number)
+                cell = TableCell.objects.filter(table=table, row=row_number, column=column_number).first()
                 row.append(cell)
             rows.append({'cells': row})
-    return render(request, 'folder_view.html', {'folder': folder, 'table': {'rows': rows} if table else None})
+    return render(request, 'folder_view.html', {'folder': folder, 'table': {'rows': rows} if table else None, 'table_id': table_id})
 
 def table_view(request, folder_id):
     folder = get_object_or_404(Folder, id=folder_id)
     table = Table.objects.filter(folder=folder).first()
     rows = []
+    table_id = None
     if table:
+        table_id = table.id
         for row_number in range(table.rows):
             row = []
             for column_number in range(table.columns):
                 cell = TableCell.objects.get(table=table, row=row_number, column=column_number)
                 row.append(cell)
             rows.append({'cells': row})
-    return render(request, 'table_view.html', {'folder': folder, 'table': {'rows': rows} if table else None})
+    return render(request, 'table_view.html', {'folder': folder, 'table': {'rows': rows} if table else None, 'table_id': table_id})
 
 def get_max_folder_index(request):
     max_index = Folder.objects.aggregate(Max('index'))['index__max'] or 0
@@ -74,8 +78,8 @@ def save_table(request):
     if request.method == "POST":
         data = json.loads(request.body)
         folder_id = data['folder_id']
-        rows = int(data['rows'])  # Преобразование строки в целое число
-        columns = int(data['columns'])  # Преобразование строки в целое число
+        rows = int(data['rows'])
+        columns = int(data['columns'])
         folder = Folder.objects.get(id=folder_id)
         table = Table.objects.create(folder=folder, rows=rows, columns=columns)
         for row in range(rows):
@@ -98,10 +102,12 @@ def save_table_data(request):
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 
 @csrf_exempt
-def delete_table(request, table_id):
+def delete_table_in_folder(request, folder_id):
     if request.method == "POST":
-        table = get_object_or_404(Table, id=table_id)
-        table.delete()
-        return JsonResponse({'status': 'success'})
+        folder = get_object_or_404(Folder, id=folder_id)
+        table = Table.objects.filter(folder=folder).first()
+        if table:
+            table.delete()
+            return JsonResponse({'status': 'success'})
+        return JsonResponse({'status': 'error', 'message': 'No table found in folder'})
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
-

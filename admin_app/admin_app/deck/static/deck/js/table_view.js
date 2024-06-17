@@ -8,13 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveTableButton = document.getElementById('saveTableButton');
     const deleteTableButton = document.getElementById('deleteTableButton');
 
+    let tableId = null;
+
     tableButton.addEventListener('click', () => {
         tableInputWindow.style.display = 'block';
     });
 
     saveTableDimensionsButton.addEventListener('click', () => {
-        const rows = parseInt(tableRowsInput.value);  // Преобразование строки в целое число
-        const columns = parseInt(tableColumnsInput.value);  // Преобразование строки в целое число
+        const rows = parseInt(tableRowsInput.value);
+        const columns = parseInt(tableColumnsInput.value);
         if (rows && columns) {
             createTable(rows, columns);
         }
@@ -36,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                location.reload(); // Перезагружаем страницу для отображения таблицы
+                tableId = data.table_id;  // Инициализация tableId
+                location.reload();  // Перезагружаем страницу для отображения таблицы
             } else {
                 alert('Error creating table');
             }
@@ -72,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteTableButton.addEventListener('click', () => {
         const confirmDelete = confirm('Are you sure you want to delete this table?');
         if (confirmDelete) {
-            fetch(`/deck/delete_table/${tableId}/`, {
+            fetch(`/deck/delete_table_in_folder/${folderId}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,9 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    location.reload(); // Перезагружаем страницу после удаления таблицы
+                    const tableElement = document.querySelector('table');
+                    if (tableElement) {
+                        tableElement.remove();
+                    }
+                    alert('Table deleted successfully');
                 } else {
-                    alert('Error deleting table');
+                    alert(data.message);
                 }
             });
         }
