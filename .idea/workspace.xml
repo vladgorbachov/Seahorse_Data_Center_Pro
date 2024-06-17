@@ -4,52 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a92e5c-f364-4dd0-adb8-98f6a24fecfa" name="Changes" comment="v_03_table data save">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/bridge/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/bridge/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/dashboard/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/dashboard/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/deck_department.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/deck_department.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/table_view.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/table_view.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/deck_department.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/deck_department.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/table_view.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/table_view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/deck_department.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/deck_department.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/table_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/table_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/background/bridge_bgrd.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/background/bridge_bgrd.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcut/android-chrome-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcut/android-chrome-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcut/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcut/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcut/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcut/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/video/DashboardBackground.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/background/bridge_bgrd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/table_view.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/js/deck_department.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/js/table_view.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/shortcuts/android-chrome-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/shortcuts/android-chrome-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/shortcuts/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/shortcuts/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/shortcuts/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/shortcuts/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/shortcut/android-chrome-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/shortcut/android-chrome-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/shortcut/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/shortcut/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/shortcut/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/shortcut/favicon.ico" beforeDir="false" />
-    </list>
+    <list default="true" id="b7a92e5c-f364-4dd0-adb8-98f6a24fecfa" name="Changes" comment="v_03_table fixed and side menu added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718612334239</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="v_03_table fixed and side menu added">
+      <option name="closed" value="true" />
+      <created>1718664680678</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718664680678</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -177,6 +140,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v_01" />
     <MESSAGE value="v_03_table data save" />
-    <option name="LAST_COMMIT_MESSAGE" value="v_03_table data save" />
+    <MESSAGE value="v_03_table fixed and side menu added" />
+    <option name="LAST_COMMIT_MESSAGE" value="v_03_table fixed and side menu added" />
   </component>
 </project>
