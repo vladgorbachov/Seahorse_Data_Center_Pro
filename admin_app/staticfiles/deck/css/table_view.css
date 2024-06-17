@@ -1,0 +1,77 @@
+/* Table Styles */
+table {
+    width: calc(100% - 80px);
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    min-width: 50px;
+    min-height: 50px;
+}
+
+td[contenteditable="true"] {
+    background-color: #f9f9f9;
+}
+
+.input-window {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom right, #1e90ff, #000000);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #888;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.input-window h2 {
+    margin: 0 0 20px 0;
+    font-size: 1em;
+}
+
+.input-window label {
+    display: inline-block;
+    margin: 10px 30px 10px 0;
+    font-size: 1.2em;
+}
+
+.input-window input[type="number"] {
+    width: 60px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.input-window button {
+    background: linear-gradient(to bottom right, #1e90ff, #000000);
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+    margin: 0 10px;
+}
+
+.input-window button:hover {
+    background: linear-gradient(to bottom right, #1e90ff, #000000);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(0, 0, 0, 0.7);
+}
