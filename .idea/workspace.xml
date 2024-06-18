@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a92e5c-f364-4dd0-adb8-98f6a24fecfa" name="Changes" comment="v_03_table fixed and side menu added" />
+    <list default="true" id="b7a92e5c-f364-4dd0-adb8-98f6a24fecfa" name="Changes" comment="v_03_table fixed and side menu added">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/deck_department.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/deck_department.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/side_panel_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/side_panel_view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/staticfiles.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/staticfiles.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,15 +44,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/volod/PycharmProjects/Seahorse_Data_Center_Pro/admin_app/admin_app/static"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/volod/PycharmProjects/Seahorse_Data_Center_Pro/admin_app/admin_app/static&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\static" />

@@ -102,12 +102,13 @@ main {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); /* Автоматическое заполнение строк */
     gap: 40px; /* Настраиваемое расстояние между колонками и строками */
     position: relative;
     z-index: 1;
     width: calc(100% - 260px); /* Ширина grid-container с учетом ширины side-panel и отступов */
-    height: 100%; /* Занимаем всю доступную высоту */
+    height: auto; /* Занимаем всю доступную высоту */
+    padding-bottom: 20px; /* Отступ снизу, чтобы не перекрывать футер */
 }
 
 .folder {
@@ -132,15 +133,63 @@ main {
     background: rgba(255, 255, 255, 0.5);
 }
 
+/* Стили для боковой панели */
 .side-panel {
     width: 300px;
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
-    padding: 40px;
-    margin-left: 30px; /* Отступ слева от grid-container */
+    padding: 20px;
+    margin-left: 20px; /* Отступ слева от grid-container */
     display: flex;
     flex-direction: column;
+    height: 95vh; /* 60% высоты от боковой панели */
     justify-content: space-between;
+}
+
+.side-panel-buttons {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    justify-content: space-around;
+}
+
+.side-panel-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc((55vh / 4) - 10px); /* высота каждого блока-кнопки, регулируется автоматически */
+    background: linear-gradient(to bottom right, #1e90ff, #87cefa);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(255, 255, 255, 0.5);
+    margin: 5px 1px; /* отступы в 1 пиксель по горизонтали и 5 пикселей по вертикали */
+    color: #000;
+    text-decoration: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.side-panel-button:hover {
+    background: linear-gradient(to bottom right, #1e90ff, #ffffff);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(255, 255, 255, 0.7);
+}
+
+.side-panel-button span {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Стили для виджета Date/Time */
+.date-time-section .cleanslate {
+    background-color: var(--date-time-bg, rgba(91, 206, 255, 0.2)); /* Цвет фона */
+    color: var(--date-time-color, #000); /* Цвет текста */
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.date-time-section .clock24 {
+    color: var(--date-time-clock-color, #000); /* Цвет текста для времени */
 }
 
 /* Стиль футера */
@@ -148,7 +197,7 @@ footer {
     padding: 20px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px солид rgba(255, 255, 255, 0.3);
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
     display: flex;
@@ -319,4 +368,3 @@ button, #backButton {
     color: var(--menu-item-text-color, #000); /* Цвет текста (по умолчанию черный) */
     font-family: var(--menu-item-font-family, 'Trebuchet MS', sans-serif); /* Шрифт (по умолчанию Arial) */
 }
-
