@@ -17,12 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (folderName) {
             getMaxFolderIndex().then(maxIndex => {
                 const newIndex = maxIndex + 1;
-                saveFolderToServer(newIndex, folderName).then(folderId => {
+                saveFolderToServer(newIndex, folderName).then(data => {
+                    const folderId = data.id;
                     const folder = document.createElement('div');
                     folder.className = 'folder';
                     folder.textContent = folderName;
                     folder.dataset.index = newIndex;
                     folder.dataset.id = folderId;
+                    folder.dataset.url = data.link;  // Установить значение data-url
                     foldersContainer.appendChild(folder);
                     addFolderEventHandlers(folder);
                     inputWindow.style.display = 'none';
@@ -40,10 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function addFolderEventHandlers(folder) {
         folder.addEventListener('dblclick', () => {
             const folderId = folder.dataset.id;
-            if (folderId) {
-                window.location.href = `/deck/folder/${folderId}/`;
+            const url = folder.dataset.url;
+            console.log('Folder URL:', url);
+            if (url && url.startsWith('file://')) {
+                window.location.href = `/deck/explorer/${folderId}/`;
             } else {
-                console.error('Folder ID is missing');
+                window.location.href = `/deck/folder/${folderId}/`;
             }
         });
 
@@ -94,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             deleteLink.addEventListener('click', () => {
-                foldersContainer.removeChild(folder);
+                if (foldersContainer.contains(folder)) {
+                    foldersContainer.removeChild(folder);
+                }
                 deleteFolderFromServer(folder.dataset.id);
                 document.body.removeChild(menu);
             });
@@ -114,15 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 linkOkButton.addEventListener('click', () => {
                     const url = linkUrlInput.value;
                     if (url) {
-                        folder.dataset.url = url;
-                        folder.addEventListener('click', () => {
-                            if (url.startsWith('file://')) {
-                                openLocalDirectory(url);
-                            } else {
-                                window.location.href = url;
-                            }
-                        });
-                        updateFolderOnServer(folder.dataset.id, { link: url }).then(() => {
+                        updateFolderOnServer(folder.dataset.id, { link: url }).then(data => {
+                            folder.dataset.url = data.link;  // Установить значение data-url
                             showAlert('Link added successfully');
                         });
                     }
@@ -133,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             document.addEventListener('click', () => {
-                if (menu) {
+                if (menu && document.body.contains(menu)) {
                     document.body.removeChild(menu);
                 }
             }, { once: true });
@@ -160,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             console.log('Folder saved:', data);
-            return data.id;  // Возвращаем идентификатор папки
+            return data;  // Возвращаем данные папки, включая ссылку
         });
     }
 
@@ -176,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             console.log('Folder updated:', data);
+            return data;  // Возвращаем обновленные данные папки, включая ссылку
         });
     }
 
@@ -217,10 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function openLocalDirectory(url) {
-    const link = document.createElement('a');
-    link.href = url;
-    link.target = '_blank';
-    link.click();
+    // Placeholder function, no longer needed since we are handling directory display server-side
 }
 
 function showAlert(message) {

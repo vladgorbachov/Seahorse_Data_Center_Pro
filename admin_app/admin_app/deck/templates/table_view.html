@@ -17,8 +17,10 @@
         <table id="dataTable">
             {% for row in table.rows %}
             <tr>
-                {% for column in table.columns %}
-                <td contenteditable="true" data-cell-id="{{ cell.id }}">{{ cell.content }}</td>
+                {% for cell in row.cells %}
+                <td contenteditable="true" data-cell-id="{% if cell %}{{ cell.id }}{% endif %}">{% if cell %}{{
+                    cell.content }}{% endif %}
+                </td>
                 {% endfor %}
             </tr>
             {% endfor %}
@@ -33,10 +35,14 @@
     </footer>
     <div class="input-window">
         <h2>Please enter table dimensions</h2>
-        <label for="tableRows">Rows</label>
-        <input type="number" id="tableRows">
-        <label for="tableColumns">Columns</label>
-        <input type="number" id="tableColumns">
+        <div class="input-group">
+            <label for="tableRows">Rows</label>
+            <input type="number" id="tableRows">
+        </div>
+        <div class="input-group">
+            <label for="tableColumns">Columns</label>
+            <input type="number" id="tableColumns">
+        </div>
         <div class="button-group">
             <button id="saveTableDimensionsButton">SAVE</button>
             <button id="cancelTableDimensionsButton">CANCEL</button>

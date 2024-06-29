@@ -11,7 +11,7 @@ table {
     margin: 20px auto; /* Центрирование таблицы с отступом */
     border-collapse: collapse; /* Убирает промежутки между ячейками */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Тень вокруг таблицы */
-    background-color: #C1CFFC;/* Цвет фона таблицы */
+    background-color: #C1CFFC; /* Цвет фона таблицы */
 }
 
 td {
@@ -29,7 +29,6 @@ td {
     font-family: 'Trebuchet MS', sans-serif; /* Тип шрифта */
     color: #333; /* Цвет шрифта */
 }
-
 
 /* Дополнительное обнуление стилей */
 body {
@@ -60,28 +59,33 @@ body {
 
 .input-window label {
     display: inline-block; /* Отображение как блочный элемент в строке */
-    margin: 7px 20px 10px 0; /* Внешние отступы меток */
-    font-size: 1.5em; /* Размер шрифта меток */
+    margin: 7px 10px 10px 0; /* Внешние отступы меток */
+    font-size: 1.4em; /* Размер шрифта меток */
     color: white; /* Цвет текста меток */
     font-family: 'Trebuchet MS', sans-serif; /* Тип шрифта меток */
     text-align: right; /* Выравнивание текста меток по правому краю */
-    width: 5px; /* Ширина меток */
+    width: auto; /* Убираем фиксированную ширину */
     vertical-align: middle; /* Вертикальное выравнивание меток по середине */
 }
 
 .input-window input[type="number"] {
-    width: 20px; /* Ширина полей ввода */
-    padding: 20px; /* Увеличенный внутренний отступ полей ввода */
-    margin: 15px; /* Внешний отступ полей ввода */
-    border-radius: 5px; /* Скругленные углы полей ввода */
+    width: 90px; /* Увеличенная ширина полей ввода (40px * 1.7) */
+    height: 35px; /* Уменьшенная высота полей ввода (30px * 0.8) */
+    padding: 5px; /* Внутренний отступ полей ввода */
+    margin: 0 10px; /* Внешний отступ полей ввода */
+    border-radius: 5px;
     text-align: center;
-    border: 1px solid #ccc; /* Цвет и стиль границы полей ввода */
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Внутренняя тень полей ввода */
+    border: 1px solid #ccc;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 18px; /* Размер шрифта */
 }
 
-.input-window label[for="tableRows"] {
-    margin-right: 5px; /* Уменьшенный правый отступ для метки "Rows" */
-}
+.input-window .input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Отступ между элементами */
+    margin-bottom: 15px; /* Нижний отступ группы */
 }
 
 .button-group {

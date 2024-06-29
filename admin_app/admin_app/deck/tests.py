@@ -2,8 +2,9 @@
 
 from django.test import TestCase, Client
 from django.urls import reverse
-from admin_app.deck.models import Folder
+from admin_app.deck.models import Folder, Table
 import json
+
 
 class FolderModelTest(TestCase):
     def setUp(self):
@@ -17,6 +18,7 @@ class FolderModelTest(TestCase):
     def test_folder_string_representation(self):
         self.assertEqual(str(self.folder), 'Test Folder')
 
+
 class DeckDepartmentViewTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -28,6 +30,7 @@ class DeckDepartmentViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Visible Folder')
         self.assertNotContains(response, 'Hidden Folder')
+
 
 class AddFolderViewTest(TestCase):
     def setUp(self):
@@ -43,6 +46,7 @@ class AddFolderViewTest(TestCase):
         self.assertEqual(Folder.objects.count(), 1)
         self.assertEqual(Folder.objects.first().name, 'New Folder')
 
+
 class UpdateFolderViewTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -56,6 +60,7 @@ class UpdateFolderViewTest(TestCase):
         self.folder.refresh_from_db()
         self.assertEqual(self.folder.name, 'Updated Name')
 
+
 class DeleteFolderViewTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -66,6 +71,7 @@ class DeleteFolderViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Folder.objects.count(), 0)
 
+
 class FolderViewTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -75,6 +81,7 @@ class FolderViewTest(TestCase):
         response = self.client.get(reverse('folder_view', args=[self.folder.id]))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'View Folder')
+
 
 class GetMaxFolderIndexViewTest(TestCase):
     def setUp(self):
@@ -87,3 +94,66 @@ class GetMaxFolderIndexViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
         self.assertEqual(data['max_index'], 2)
+
+
+class FolderContentViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.folder = Folder.objects.create(index=1, name='Local Folder', link='file:///path/to/local/folder',
+                                            is_local_link=True)
+
+    def test_folder_content_view(self):
+        response = self.client.get(reverse('folder_content_view', args=[self.folder.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Local Folder')
+        self.assertContains(response, 'Folder Path: file:///path/to/local/folder')
+
+
+class TableViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.folder = Folder.objects.create(index=1, name='Table Folder')
+
+    def test_save_and_load_table_data(self):
+        # Сохранение данных таблицы
+        response = self.client.post(reverse('save_table'), json.dumps({
+            'folder_id': self.folder.id,
+            'rows': 2,
+            'columns': 3
+        }), content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        table_id = json.loads(response.content)['table_id']
+
+        # Загрузка данных таблицы
+        response = self.client.get(reverse('table_view', args=[self.folder.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Table Folder')
+        self.assertContains(response, f'data-cell-id="{table_id}"')
+
+
+class DeleteTableInFolderViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.folder = Folder.objects.create(index=1, name='Folder with Table')
+        self.table = Table.objects.create(folder=self.folder, rows=2, columns=2)
+
+    def test_delete_table_in_folder(self):
+        response = self.client.post(reverse('delete_table_in_folder', args=[self.folder.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(Table.objects.count(), 0)
+
+
+class ErrorHandlingTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_invalid_folder_id(self):
+        response = self.client.get(reverse('folder_view', args=[999]))
+        self.assertEqual(response.status_code, 404)
+
+    def test_invalid_file_path(self):
+        folder = Folder.objects.create(index=1, name='Invalid File Path', link='file:///invalid/path',
+                                       is_local_link=True)
+        response = self.client.get(reverse('folder_content_view', args=[folder.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'No content found')

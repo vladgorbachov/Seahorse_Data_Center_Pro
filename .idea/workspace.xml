@@ -4,11 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a92e5c-f364-4dd0-adb8-98f6a24fecfa" name="Changes" comment="v_03_table fixed and side menu added">
+    <list default="true" id="b7a92e5c-f364-4dd0-adb8-98f6a24fecfa" name="Changes" comment="v_03_side menu time and date widgets added and adjusted">
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/explorer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/explorer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/explorer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/deck_department.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/deck_department.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/side_panel_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/side_panel_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/table_view.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/table_view.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/deck_department.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/deck_department.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/deck_department.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/deck_department.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/table_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/table_view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.07c01bbd332b.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.4671ad0a7e9a.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.7c2cd2b7fe40.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.860fe969aea9.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.a21f8bad511b.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.acfa0a2ff9d4.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.ca0999bf35a7.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/deck_department.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/side_panel_view.01ec3937b39e.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/side_panel_view.49386e59b1a4.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/side_panel_view.b8aba0bf9254.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/side_panel_view.cd6dc2734cde.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/side_panel_view.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/table_view.03c049a118fa.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/table_view.06b0f6581739.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/table_view.1aef782464bb.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/table_view.9edab8a328ca.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/table_view.cb2d40478efc.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/table_view.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/table_view.dac83e6c1bfc.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/css/table_view.ece8f08950bb.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/js/deck_department.f2eb89801394.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/js/deck_department.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/js/table_view.1d652c82dda4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/js/table_view.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/staticfiles.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/staticfiles.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,20 +77,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/volod/PycharmProjects/Seahorse_Data_Center_Pro/admin_app/admin_app/static&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/volod/PycharmProjects/Seahorse_Data_Center_Pro/admin_app/admin_app/deck/static/deck/shortcuts"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\deck\static\deck\shortcuts" />
+      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\static\shortcuts" />
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\static" />
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\deck\static\deck" />
-      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\deck\static\deck\shortcuts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\bridge\static\bridge" />
@@ -129,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718664680678</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="v_03_side menu time and date widgets added and adjusted">
+      <option name="closed" value="true" />
+      <created>1718717840390</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718717840390</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,6 +189,7 @@
     <MESSAGE value="v_01" />
     <MESSAGE value="v_03_table data save" />
     <MESSAGE value="v_03_table fixed and side menu added" />
-    <option name="LAST_COMMIT_MESSAGE" value="v_03_table fixed and side menu added" />
+    <MESSAGE value="v_03_side menu time and date widgets added and adjusted" />
+    <option name="LAST_COMMIT_MESSAGE" value="v_03_side menu time and date widgets added and adjusted" />
   </component>
 </project>

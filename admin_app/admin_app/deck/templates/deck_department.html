@@ -36,9 +36,6 @@
             {% for folder in folders|dictsort:"index" %}
             <div class="folder" data-id="{{ folder.id }}" data-index="{{ folder.index }}" data-url="{{ folder.link }}">
                 {{ folder.name }}
-                {% if folder.is_local_link %}
-                <span class="folder-title">(Local Directory)</span>
-                {% endif %}
             </div>
             {% endfor %}
         </div>
