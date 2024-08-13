@@ -1,5 +1,5 @@
 import os
-from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -118,6 +118,9 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#print("BASE_DIR:", BASE_DIR)
-#print("STATICFILES_DIRS:", STATICFILES_DIRS)
-#print("STATIC_ROOT:", STATIC_ROOT)
+# Установите максимальный размер загружаемого файла (например, 100 МБ)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100 MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100 MB
+
+# Увеличьте таймаут сервера разработки Django
+os.environ['DJANGO_SERVER_TIMEOUT'] = '300'  # 5 минут

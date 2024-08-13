@@ -18,13 +18,18 @@
     <input type="hidden" id="currentPath" value="{{ current_path }}" data-folder-id="{{ folder.id }}">
     <header>
         <button id="backButton" onclick="window.history.back();">BACK</button>
+
         <h1>{{ folder.name }}</h1>
     </header>
 
     <main class="explorer-container">
-        <div class="file-list grid-view" id="fileList">
-            <!-- Файлы и папки будут добавлены здесь динамически -->
-        </div>
+        {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+        {% else %}
+            <div class="file-list grid-view" id="fileList">
+                <!-- Файлы и папки будут добавлены здесь динамически -->
+            </div>
+        {% endif %}
     </main>
 
     <footer>
@@ -37,10 +42,18 @@
                 <option value="date" selected>Sort by Date</option>
                 <option value="name">Sort by Name</option>
                 <option value="size">Sort by Size</option>
+                <option value="type">Sort by Type</option>
             </select>
             <input type="text" id="searchInput" placeholder="Search files...">
         </div>
     </footer>
+
+    <div id="contextMenu" class="context-menu">
+        <a href="#" id="openFile">Open</a>
+        <a href="#" id="renameFile">Rename</a>
+        <a href="#" id="deleteFile">Delete</a>
+        <a href="#" id="fileInfo">Information</a>
+    </div>
 
     <script src="{% static 'deck/js/explorer.js' %}"></script>
 </body>

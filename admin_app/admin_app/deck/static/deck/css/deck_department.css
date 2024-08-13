@@ -149,7 +149,7 @@ main {
 .side-panel-buttons {
     display: flex;
     flex-direction: column;
-    height: 60%;
+    height: 65%;
     justify-content: space-around;
 }
 

@@ -1,12 +1,16 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse, FileResponse
-from .models import Folder, Table, TableCell, FileMetadata
+from django.http import JsonResponse
+from django.http import FileResponse
+from .models import Folder, Table, TableCell
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_GET
 import json
+import shutil
 from django.db.models import Max
 import os
 import mimetypes
 from datetime import datetime
+import subprocess
 
 
 def deck_department(request):
@@ -157,13 +161,125 @@ def delete_table_in_folder(request, folder_id):
 def explorer_view(request, folder_id):
     folder = get_object_or_404(Folder, id=folder_id)
     if not folder.is_local_link:
-        return JsonResponse({'status': 'error', 'message': 'Not a local link'})
+        return render(request, 'explorer.html', {
+            'folder': folder,
+            'contents': [],
+            'current_path': '',
+            'error_message': 'Not a local link'
+        })
 
     folder_path = folder.link.replace('file://', '')
     try:
         contents = get_folder_contents_data(folder_path)
+        if not contents:
+            return render(request, 'explorer.html', {
+                'folder': folder,
+                'contents': [],
+                'current_path': folder_path,
+                'error_message': 'No content found'
+            })
         return render(request, 'explorer.html', {
             'folder': folder,
+            'contents': contents,
+            'current_path': folder_path
+        })
+    except Exception as e:
+        return render(request, 'explorer.html', {
+            'folder': folder,
+            'contents': [],
+            'current_path': folder_path,
+            'error_message': f'Error: {str(e)}'
+        })
+
+
+@csrf_exempt
+def create_subfolder(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        parent_path = data.get('parent_path')
+        new_folder_name = data.get('new_folder_name')
+
+        # Проверяем, является ли parent_path путем к локальной директории или ID папки в базе данных
+        if parent_path and parent_path.startswith('file://'):
+            parent_path = parent_path.replace('file://', '')
+        elif parent_path:
+            try:
+                folder = Folder.objects.get(id=int(parent_path))
+                parent_path = folder.link.replace('file://', '')
+            except Folder.DoesNotExist:
+                return JsonResponse({'status': 'error', 'message': 'Parent folder not found'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Invalid parent path'})
+
+        new_folder_path = os.path.join(parent_path, new_folder_name)
+
+        try:
+            # Создаем новую папку
+            os.makedirs(new_folder_path, exist_ok=True)
+
+            # Создаем новую запись в базе данных
+            new_folder = Folder(
+                name=new_folder_name,
+                link=f'file://{new_folder_path}',
+                is_local_link=True,
+                visible=True,
+                parent_folder_id=folder.id if 'folder' in locals() else None
+            )
+            new_folder.save()
+
+            return JsonResponse({'status': 'success', 'message': 'Subfolder created successfully'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+
+def delete_subfolder(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        folder_path = data.get('folder_path')
+
+        try:
+            shutil.rmtree(folder_path)
+            return JsonResponse({'status': 'success', 'message': 'Subfolder deleted successfully'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+
+
+def rename_subfolder(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        old_path = data.get('old_path')
+        new_name = data.get('new_name')
+        new_path = os.path.join(os.path.dirname(old_path), new_name)
+
+        try:
+            os.rename(old_path, new_path)
+            return JsonResponse({'status': 'success', 'message': 'Subfolder renamed successfully'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+
+
+def get_folder_contents(request):
+    folder_id = request.GET.get('folder_id')
+    subfolder_path = request.GET.get('subfolder_path')
+
+    try:
+        if folder_id:
+            folder_id = int(folder_id)
+            folder = get_object_or_404(Folder, id=folder_id)
+            if folder.is_local_link:
+                folder_path = folder.link.replace('file://', '')
+            else:
+                return JsonResponse({'status': 'error', 'message': 'Not a local folder'})
+        elif subfolder_path:
+            folder_path = subfolder_path.replace('file://', '')
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+
+        contents = get_folder_contents_data(folder_path)
+        return JsonResponse({
+            'status': 'success',
             'contents': contents,
             'current_path': folder_path
         })
@@ -171,38 +287,16 @@ def explorer_view(request, folder_id):
         return JsonResponse({'status': 'error', 'message': str(e)})
 
 
-def get_folder_contents(request):
-    folder_id = request.GET.get('folder_id')
-    try:
-        folder_id = int(folder_id)
-        folder = get_object_or_404(Folder, id=folder_id)
-    except ValueError:
-        return JsonResponse({'status': 'error', 'message': 'Invalid folder ID'})
-
-    if folder.is_local_link:
-        folder_path = folder.link.replace('file://', '')
-        try:
-            contents = get_folder_contents_data(folder_path)
-            return JsonResponse({
-                'status': 'success',
-                'contents': contents,
-                'current_path': folder_path
-            })
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)})
-    else:
-        return JsonResponse({'status': 'error', 'message': 'Not a local folder'})
-
-
 def get_folder_contents_data(folder_path):
     with os.scandir(folder_path) as entries:
         return [{
-            'id': str(entry.path),  # Преобразуем путь в строку
+            'id': str(entry.path),
             'name': entry.name,
             'is_dir': entry.is_dir(),
             'size': entry.stat().st_size if not entry.is_dir() else 0,
             'last_modified': datetime.fromtimestamp(entry.stat().st_mtime).isoformat(),
-            'file_type': 'folder' if entry.is_dir() else mimetypes.guess_type(entry.path)[0],
+            'created': datetime.fromtimestamp(entry.stat().st_ctime).isoformat(),
+            'file_type': 'folder' if entry.is_dir() else mimetypes.guess_type(entry.path)[0] or 'Unknown',
             'icon': get_icon_path('folder' if entry.is_dir() else mimetypes.guess_type(entry.path)[0])
         } for entry in entries]
 
@@ -237,6 +331,40 @@ def get_icon_path(file_type):
         return f'/static/{icon_mapping["unknown"]}'
 
 
+@csrf_exempt
+def rename_file(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        file_id = data['file_id']
+        new_name = data['new_name']
+        old_path = file_id
+        new_path = os.path.join(os.path.dirname(old_path), new_name)
+        try:
+            os.rename(old_path, new_path)
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+
+@csrf_exempt
+def delete_file(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        file_id = data['file_id']
+        try:
+            if os.path.isdir(file_id):
+                os.rmdir(file_id)
+            else:
+                os.remove(file_id)
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+
+
+@require_GET
 def file_action(request):
     action = request.GET.get('action')
     path = request.GET.get('path')
@@ -245,21 +373,67 @@ def file_action(request):
         return JsonResponse({'status': 'error', 'message': 'File not found'})
 
     if action == 'open':
-        file_type, encoding = mimetypes.guess_type(path)
-        if file_type:
-            with open(path, 'rb') as file:
-                response = FileResponse(file)
-                response['Content-Type'] = file_type
-                response['Content-Disposition'] = f'inline; filename="{os.path.basename(path)}"'
-                return response
+        if os.path.isdir(path):
+            folder = Folder.objects.filter(link__icontains=path).first()
+            if folder:
+                return explorer_view(request, folder.id)
+            else:
+                return JsonResponse({'status': 'error', 'message': 'Folder not found in database'})
         else:
-            return JsonResponse({'status': 'error', 'message': 'Unable to determine file type'})
-
+            file_type, encoding = mimetypes.guess_type(path)
+            if file_type == 'application/pdf':
+                try:
+                    file = open(path, 'rb')
+                    response = FileResponse(file, content_type='application/pdf')
+                    response['Content-Disposition'] = f'inline; filename="{os.path.basename(path)}"'
+                    return response
+                except Exception as e:
+                    return JsonResponse({'status': 'error', 'message': f'Error opening PDF: {str(e)}'})
+            elif file_type:
+                if os.name == 'nt':  # для Windows
+                    os.startfile(path)
+                elif os.name == 'posix':  # для macOS и Linux
+                    subprocess.call(('xdg-open', path))
+                return JsonResponse({'status': 'success'})
+            else:
+                return JsonResponse({'status': 'error', 'message': 'Unable to determine file type'})
     elif action == 'download':
-        with open(path, 'rb') as file:
-            response = FileResponse(file)
+        try:
+            file = open(path, 'rb')
+            response = FileResponse(file, content_type='application/octet-stream')
             response['Content-Disposition'] = f'attachment; filename="{os.path.basename(path)}"'
             return response
-
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': f'Error downloading file: {str(e)}'})
     else:
         return JsonResponse({'status': 'error', 'message': 'Invalid action'})
+
+
+def get_file_info(request):
+    file_path = request.GET.get('path')
+    if not os.path.exists(file_path):
+        return JsonResponse({'status': 'error', 'message': 'File not found'})
+
+    file_stat = os.stat(file_path)
+    file_type, encoding = mimetypes.guess_type(file_path)
+
+    file_info = {
+        'name': os.path.basename(file_path),
+        'full_path': file_path,
+        'size': file_stat.st_size,
+        'created': datetime.fromtimestamp(file_stat.st_ctime).isoformat(),
+        'modified': datetime.fromtimestamp(file_stat.st_mtime).isoformat(),
+        'file_type': file_type or 'Unknown',
+        'is_dir': os.path.isdir(file_path)
+    }
+
+    return JsonResponse({'status': 'success', 'file_info': file_info})
+
+
+def pdf_viewer(request):
+    file_path = request.GET.get('file')
+    return render(request, 'pdf_viewer.html', {'file_path': file_path})
+
+
+
+

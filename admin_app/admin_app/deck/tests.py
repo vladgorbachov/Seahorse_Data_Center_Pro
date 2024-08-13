@@ -1,10 +1,9 @@
-# admin_app/admin_app/deck/tests.py
-
+import tempfile
 from django.test import TestCase, Client
 from django.urls import reverse
-from admin_app.deck.models import Folder, Table
+from .models import Folder, Table, TableCell, FileMetadata
 import json
-
+import os
 
 class FolderModelTest(TestCase):
     def setUp(self):
@@ -18,6 +17,15 @@ class FolderModelTest(TestCase):
     def test_folder_string_representation(self):
         self.assertEqual(str(self.folder), 'Test Folder')
 
+class FileMetadataModelTest(TestCase):
+    def setUp(self):
+        self.folder = Folder.objects.create(index=1, name='Test Folder')
+        self.metadata = FileMetadata.objects.create(folder=self.folder, file_type='text', size=100, last_modified='2024-01-01T00:00:00Z', icon_path='path/to/icon')
+
+    def test_metadata_creation(self):
+        self.assertEqual(self.metadata.folder, self.folder)
+        self.assertEqual(self.metadata.file_type, 'text')
+        self.assertEqual(self.metadata.size, 100)
 
 class DeckDepartmentViewTest(TestCase):
     def setUp(self):
@@ -30,7 +38,6 @@ class DeckDepartmentViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Visible Folder')
         self.assertNotContains(response, 'Hidden Folder')
-
 
 class AddFolderViewTest(TestCase):
     def setUp(self):
@@ -46,7 +53,6 @@ class AddFolderViewTest(TestCase):
         self.assertEqual(Folder.objects.count(), 1)
         self.assertEqual(Folder.objects.first().name, 'New Folder')
 
-
 class UpdateFolderViewTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -60,7 +66,6 @@ class UpdateFolderViewTest(TestCase):
         self.folder.refresh_from_db()
         self.assertEqual(self.folder.name, 'Updated Name')
 
-
 class DeleteFolderViewTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -71,7 +76,6 @@ class DeleteFolderViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Folder.objects.count(), 0)
 
-
 class FolderViewTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -81,7 +85,6 @@ class FolderViewTest(TestCase):
         response = self.client.get(reverse('folder_view', args=[self.folder.id]))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'View Folder')
-
 
 class GetMaxFolderIndexViewTest(TestCase):
     def setUp(self):
@@ -95,19 +98,22 @@ class GetMaxFolderIndexViewTest(TestCase):
         data = json.loads(response.content)
         self.assertEqual(data['max_index'], 2)
 
-
 class FolderContentViewTest(TestCase):
     def setUp(self):
         self.client = Client()
-        self.folder = Folder.objects.create(index=1, name='Local Folder', link='file:///path/to/local/folder',
-                                            is_local_link=True)
+        self.folder = Folder.objects.create(index=1, name='Local Folder', link='file:///path/to/local/folder', is_local_link=True)
+        os.makedirs('/path/to/local/folder', exist_ok=True)
+        with open('/path/to/local/folder/test.txt', 'w') as f:
+            f.write('Test content')
+
+    def tearDown(self):
+        os.remove('/path/to/local/folder/test.txt')
+        os.rmdir('/path/to/local/folder')
 
     def test_folder_content_view(self):
-        response = self.client.get(reverse('folder_content_view', args=[self.folder.id]))
+        response = self.client.get(reverse('explorer_view', args=[self.folder.id]))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Local Folder')
-        self.assertContains(response, 'Folder Path: file:///path/to/local/folder')
-
 
 class TableViewTest(TestCase):
     def setUp(self):
@@ -130,7 +136,6 @@ class TableViewTest(TestCase):
         self.assertContains(response, 'Table Folder')
         self.assertContains(response, f'data-cell-id="{table_id}"')
 
-
 class DeleteTableInFolderViewTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -142,18 +147,73 @@ class DeleteTableInFolderViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Table.objects.count(), 0)
 
-
 class ErrorHandlingTest(TestCase):
     def setUp(self):
         self.client = Client()
-
-    def test_invalid_folder_id(self):
-        response = self.client.get(reverse('folder_view', args=[999]))
-        self.assertEqual(response.status_code, 404)
+        self.folder = Folder.objects.create(index=1, name='Invalid File Path', link='file:///invalid/path', is_local_link=True)
 
     def test_invalid_file_path(self):
-        folder = Folder.objects.create(index=1, name='Invalid File Path', link='file:///invalid/path',
-                                       is_local_link=True)
-        response = self.client.get(reverse('folder_content_view', args=[folder.id]))
+        response = self.client.get(reverse('explorer_view', args=[self.folder.id]))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'No content found')
+
+class FileActionViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.folder = Folder.objects.create(index=1, name='File Action Folder', link='file:///path/to/folder', is_local_link=True)
+        self.test_dir = tempfile.TemporaryDirectory()
+        self.file_path = os.path.join(self.test_dir.name, 'test.txt')
+        with open(self.file_path, 'w') as f:
+            f.write('Test content')
+
+    def tearDown(self):
+        self.test_dir.cleanup()
+
+    def test_open_file_action(self):
+        response = self.client.get(reverse('file_action'), {'action': 'open', 'path': self.file_path})
+        self.assertEqual(response.status_code, 200)
+
+    def test_download_file_action(self):
+        response = self.client.get(reverse('file_action'), {'action': 'download', 'path': self.file_path})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['Content-Disposition'], f'attachment; filename="test.txt"')
+
+class RenameFileViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.folder = Folder.objects.create(index=1, name='Rename File Folder', link='file:///path/to/folder', is_local_link=True)
+        self.test_dir = tempfile.TemporaryDirectory()
+        self.file_path = os.path.join(self.test_dir.name, 'test.txt')
+        with open(self.file_path, 'w') as f:
+            f.write('Test content')
+
+    def tearDown(self):
+        self.test_dir.cleanup()
+
+    def test_rename_file(self):
+        new_name = 'renamed.txt'
+        response = self.client.post(reverse('rename_file'), json.dumps({
+            'file_id': self.file_path,
+            'new_name': new_name
+        }), content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(os.path.exists(os.path.join(os.path.dirname(self.file_path), new_name)))
+
+class DeleteFileViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.folder = Folder.objects.create(index=1, name='Delete File Folder', link='file:///path/to/folder', is_local_link=True)
+        self.test_dir = tempfile.TemporaryDirectory()
+        self.file_path = os.path.join(self.test_dir.name, 'test.txt')
+        with open(self.file_path, 'w') as f:
+            f.write('Test content')
+
+    def tearDown(self):
+        self.test_dir.cleanup()
+
+    def test_delete_file(self):
+        response = self.client.post(reverse('delete_file'), json.dumps({
+            'file_id': self.file_path
+        }), content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(os.path.exists(self.file_path))

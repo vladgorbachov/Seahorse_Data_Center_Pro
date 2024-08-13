@@ -15,4 +15,11 @@ urlpatterns = [
     path('explorer/<int:folder_id>/', views.explorer_view, name='explorer_view'),
     path('get_folder_contents/', views.get_folder_contents, name='get_folder_contents'),
     path('file_action/', views.file_action, name='file_action'),
+    path('rename_file/', views.rename_file, name='rename_file'),
+    path('delete_file/', views.delete_file, name='delete_file'),
+    path('get_file_info/', views.get_file_info, name='get_file_info'),
+    path('pdf-viewer/', views.pdf_viewer, name='pdf_viewer'),
+    path('create_subfolder/', views.create_subfolder, name='create_subfolder'),
+    path('delete_subfolder/', views.delete_subfolder, name='delete_subfolder'),
+    path('rename_subfolder/', views.rename_subfolder, name='rename_subfolder'),
 ]
