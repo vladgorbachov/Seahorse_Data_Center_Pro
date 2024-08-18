@@ -14,7 +14,7 @@ import subprocess
 
 def catering_department(request):
     folders = Folder.objects.filter(visible=True)
-    return render(request, 'electrical_department.html', {'folders': folders})
+    return render(request, 'catering_department.html', {'folders': folders})
 
 
 @csrf_exempt
@@ -82,7 +82,7 @@ def folder_view(request, folder_id):
                 cell = TableCell.objects.filter(table=table, row=row_number, column=column_number).first()
                 row.append(cell)
             rows.append({'cells': row})
-    return render(request, 'electrical_folder_view.html',
+    return render(request, 'catering_folder_view.html',
                   {'folder': folder, 'table': {'rows': rows} if table else None, 'table_id': table_id})
 
 
@@ -99,7 +99,7 @@ def table_view(request, folder_id):
                 cell = TableCell.objects.filter(table=table, row=row_number, column=column_number).first()
                 row.append(cell)
             rows.append({'cells': row})
-    return render(request, 'electrical_table_view.html',
+    return render(request, 'catering_table_view.html',
                   {'folder': folder, 'table': {'rows': rows} if table else None, 'table_id': table_id})
 
 
@@ -160,7 +160,7 @@ def delete_table_in_folder(request, folder_id):
 def explorer_view(request, folder_id):
     folder = get_object_or_404(Folder, id=folder_id)
     if not folder.is_local_link:
-        return render(request, 'electrical_explorer.html', {
+        return render(request, 'catering_explorer.html', {
             'folder': folder,
             'contents': [],
             'current_path': '',
@@ -171,19 +171,19 @@ def explorer_view(request, folder_id):
     try:
         contents = get_folder_contents_data(folder_path)
         if not contents:
-            return render(request, 'electrical_explorer.html', {
+            return render(request, 'catering_explorer.html', {
                 'folder': folder,
                 'contents': [],
                 'current_path': folder_path,
                 'error_message': 'No content found'
             })
-        return render(request, 'electrical_explorer.html', {
+        return render(request, 'catering_explorer.html', {
             'folder': folder,
             'contents': contents,
             'current_path': folder_path
         })
     except Exception as e:
-        return render(request, 'electrical_explorer.html', {
+        return render(request, 'catering_explorer.html', {
             'folder': folder,
             'contents': [],
             'current_path': folder_path,
@@ -363,7 +363,7 @@ def get_file_info(request):
 
 def pdf_viewer(request):
     file_path = request.GET.get('file')
-    return render(request, 'electrical_pdf_viewer.html', {'file_path': file_path})
+    return render(request, 'catering_pdf_viewer.html', {'file_path': file_path})
 
 
 

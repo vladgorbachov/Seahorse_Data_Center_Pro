@@ -19,5 +19,8 @@ urlpatterns = [
     path('delete_file/', views.delete_file, name='bridge_delete_file'),
     path('get_file_info/', views.get_file_info, name='bridge_get_file_info'),
     path('pdf-viewer/', views.pdf_viewer, name='bridge_pdf_viewer'),
+    path('dp_days_calendar/', views.dp_days_calendar, name='dp_days_calendar'),
+    path('get_dp_hours/', views.get_dp_hours, name='get_dp_hours'),
+    path('save_dp_hours/', views.save_dp_hours, name='save_dp_hours'),
 ]
 

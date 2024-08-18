@@ -57,8 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Folder URL:', url);
             if (url && url.startsWith('file://')) {
                 window.location.href = `explorer/${folderId}/`;  // Обновлен путь
+              } else if (folderId === '10') { // ID папки DP Days
+                window.location.href = '/bridge/dp_days_calendar/';
             } else {
-                window.location.href = `folder/${folderId}/`;  // Обновлен путь
+                window.location.href = `folder/${folderId}/`;
             }
         });
 

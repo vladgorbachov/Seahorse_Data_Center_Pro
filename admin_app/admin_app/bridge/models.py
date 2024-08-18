@@ -8,7 +8,8 @@ class Folder(models.Model):
     link = models.CharField(max_length=2048, blank=True, null=True)
     is_local_link = models.BooleanField(default=False)
     visible = models.BooleanField(default=True)
-    parent_folder = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='subfolders')
+    parent_folder = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True,
+                                      related_name='subfolders')
     is_file = models.BooleanField(default=False)
     department = models.CharField(max_length=10, choices=[('deck', 'Deck'), ('bridge', 'Bridge')], default='deck')
 
@@ -38,3 +39,14 @@ class TableCell(models.Model):
     row = models.IntegerField()
     column = models.IntegerField()
     content = models.TextField(blank=True)
+
+
+class DPHours(models.Model):
+    date = models.DateField(unique=True)
+    hours = models.IntegerField()
+
+    class Meta:
+        ordering = ['date']
+
+    def __str__(self):
+        return f"{self.date}: {self.hours} hours"

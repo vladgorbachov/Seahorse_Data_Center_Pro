@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
+from .dashboard.views import dashboard_view
+from .views import CustomLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -9,4 +11,6 @@ urlpatterns = [
     path('catering/', include('admin_app.catering.urls')),
     path('electrical/', include('admin_app.electrical.urls')),
     path('engine/', include('admin_app.engine.urls')),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('dashboard/', dashboard_view, name='dashboard'),
 ]

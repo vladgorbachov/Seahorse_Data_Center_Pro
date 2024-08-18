@@ -5,11 +5,13 @@ from .models import Folder, Table, TableCell
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
 import json
-from django.db.models import Max
+from django.db.models import Max, Sum
 import os
 import mimetypes
 from datetime import datetime
 import subprocess
+from django.views.decorators.http import require_http_methods
+from .models import DPHours
 
 
 def bridge_department(request):
@@ -70,6 +72,8 @@ def folder_view(request, folder_id):
     folder = get_object_or_404(Folder, id=folder_id)
     if folder.is_local_link:
         return explorer_view(request, folder_id)
+    if folder_id == 10:  # ID папки DP Days
+        return render(request, 'dp_days_calendar.html', {'folder': folder})
 
     table = Table.objects.filter(folder=folder).select_related('folder').first()
     rows = []
@@ -365,6 +369,38 @@ def pdf_viewer(request):
     file_path = request.GET.get('file')
     return render(request, 'bridge_pdf_viewer.html', {'file_path': file_path})
 
+
+def dp_days_calendar(request):
+    return render(request, 'dp_days_calendar.html')
+
+
+def get_dp_hours(request):
+    dp_hours = DPHours.objects.all().values('date', 'hours')
+    return JsonResponse(list(dp_hours), safe=False)
+
+
+def get_dp_hours_summary(request, year, month):
+    month_hours = DPHours.objects.filter(date__year=year, date__month=month).aggregate(Sum('hours'))['hours__sum'] or 0
+    year_hours = DPHours.objects.filter(date__year=year).aggregate(Sum('hours'))['hours__sum'] or 0
+    return JsonResponse({'month_hours': month_hours, 'year_hours': year_hours})
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def save_dp_hours(request):
+    try:
+        data = json.loads(request.body)
+        date = datetime.strptime(data['date'], '%Y-%m-%d').date()
+        hours = data['hours']
+
+        dp_hours, created = DPHours.objects.update_or_create(
+            date=date,
+            defaults={'hours': hours}
+        )
+
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
 
 
 

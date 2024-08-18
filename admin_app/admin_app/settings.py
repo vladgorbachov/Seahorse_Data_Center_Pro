@@ -1,6 +1,5 @@
 import os
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -47,7 +46,8 @@ ROOT_URLCONF = 'admin_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'admin_app', 'dashboard'),
+        'DIRS': [os.path.join(BASE_DIR, 'admin_app', 'templates'),
+                 os.path.join(BASE_DIR, 'admin_app', 'dashboard'),
                  os.path.join(BASE_DIR, 'templates'),
                  os.path.join(BASE_DIR, 'deck', 'templates'),
                  os.path.join(BASE_DIR, 'bridge', 'templates'),
@@ -82,6 +82,12 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+AUTH_USER_MODEL = 'auth.User'
+
+LOGIN_REDIRECT_URL = '/dashboard/'
+
+LOGIN_URL = '/login/'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
