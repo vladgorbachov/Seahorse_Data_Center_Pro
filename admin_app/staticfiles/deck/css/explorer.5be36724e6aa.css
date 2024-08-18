@@ -1,0 +1,97 @@
+.explorer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.breadcrumb {
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb li {
+    display: inline;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: " > ";
+}
+
+.explorer-content {
+    display: flex;
+    flex: 1;
+}
+
+.file-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.file-preview {
+    width: 300px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-left: 1px solid #ddd;
+}
+
+.controls {
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+/* Стили для отображения файлов и папок в виде списка */
+.file-list.list-view .file-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.file-list.list-view .file-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* Стили для отображения файлов и папок в виде сетки */
+.file-list.grid-view {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.file-list.grid-view .file-item {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    text-align: center;
+}
+
+.file-list.grid-view .file-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+/* Стили для иконок различных типов файлов */
+.file-icon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.file-icon.folder { background-image: url("/static/shortcuts/folder.e3b14b4a3291.png"); }
+.file-icon.text { background-image: url("/static/shortcuts/txt-file.165f3c82afdc.png"); }
+.file-icon.image { background-image: url("/static/shortcuts/image.f9ad77ac6feb.png"); }
+.file-icon.audio { background-image: url("/static/shortcuts/audio.a474864adae9.png"); }
+.file-icon.video { background-image: url("/static/shortcuts/video.8162b3fd796d.png"); }
+.file-icon.pdf { background-image: url("/static/shortcuts/pdf.dedce39251ef.png"); }
+.file-icon.word { background-image: url("/static/shortcuts/word.d313b934754b.png"); }
+.file-icon.excel { background-image: url("/static/shortcuts/excel.327c7ded1863.png"); }
+.file-icon.archive { background-image: url("/static/shortcuts/archive.92d70453fd20.png"); }
+.file-icon.unknown { background-image: url("/static/shortcuts/unknown.7cf1cf9b6c0f.png"); }
