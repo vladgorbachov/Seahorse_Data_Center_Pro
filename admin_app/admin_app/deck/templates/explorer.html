@@ -3,44 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ folder.name }} - File Explorer</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'deck/css/deck_department.css' %}">
-    <link rel="stylesheet" href="{% static 'deck/css/explorer.css' %}">
-    <style>
-        body, html {
-            background: url("{% static 'background/bridge_bgrd.png' %}") no-repeat center center fixed;
-            background-size: cover;
-        }
-    </style>
+    <title>Explorer - {{ folder.name }}</title>
+    <link rel="stylesheet" href="/static/deck/css/explorer.css">
 </head>
 <body>
-    <input type="hidden" id="currentPath" value="{{ current_path }}" data-folder-id="{{ folder.id }}">
     <header>
-        <button id="backButton" onclick="window.history.back();">BACK</button>
-
+        <button id="backButton">BACK</button>
         <h1>{{ folder.name }}</h1>
     </header>
 
-    <main class="explorer-container">
-        {% if error_message %}
-            <div class="error-message">{{ error_message }}</div>
-        {% else %}
-            <div class="file-list grid-view" id="fileList">
-                <!-- Файлы и папки будут добавлены здесь динамически -->
-            </div>
-        {% endif %}
-    </main>
+    <div class="explorer-container">
+        <div class="file-container">
+            {% if error_message %}
+                <div class="error-message">
+                    {{ error_message }}
+                </div>
+            {% else %}
+                <div id="fileList" class="file-list grid-view">
+                    <!-- Файлы будут добавлены здесь динамически -->
+                </div>
+            {% endif %}
+        </div>
+    </div>
 
     <footer>
         <div class="controls">
             <select id="viewMode">
-                <option value="grid" selected>Grid View</option>
+                <option value="grid">Grid View</option>
                 <option value="list">List View</option>
             </select>
             <select id="sortBy">
-                <option value="date" selected>Sort by Date</option>
                 <option value="name">Sort by Name</option>
+                <option value="date">Sort by Date</option>
                 <option value="size">Sort by Size</option>
                 <option value="type">Sort by Type</option>
             </select>
@@ -49,12 +43,11 @@
     </footer>
 
     <div id="contextMenu" class="context-menu">
-        <a href="#" id="openFile">Open</a>
-        <a href="#" id="renameFile">Rename</a>
-        <a href="#" id="deleteFile">Delete</a>
-        <a href="#" id="fileInfo">Information</a>
+    <!-- Пустой div, содержимое будет добавлено динамически -->
     </div>
 
-    <script src="{% static 'deck/js/explorer.js' %}"></script>
+    <input type="hidden" id="currentPath" data-folder-id="{{ folder.id }}" value="{{ current_path }}">
+
+    <script src="/static/deck/js/explorer.js"></script>
 </body>
 </html>

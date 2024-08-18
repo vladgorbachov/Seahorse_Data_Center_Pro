@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ folder.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'catering/css/catering_department.css' %}">
+    <link rel="stylesheet" href="{% static 'catering/css/catering_table_view.css' %}">
+    <link rel="icon" href="{% static 'catering/shortcuts/favicon.ico' %}" type="image/x-icon">
+    <style>
+        body, html {
+            background: url("{% static 'background/bridge_bgrd.png' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="backButton" onclick="window.history.back();">BACK</button>
+        <h1>{{ folder.name }}</h1>
+        <button id="tableButton">TABLE</button>
+    </header>
+    <main>
+        {% if table %}
+        <table>
+            {% for row in table.rows %}
+            <tr>
+                {% for cell in row.cells %}
+                <td contenteditable="true" data-cell-id="{{ cell.id }}">{{ cell.content }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </main>
+    <footer>
+        <button id="saveTableButton">SAVE</button>
+        <button id="deleteTableButton">DELETE</button>
+    </footer>
+    <div class="input-window" id="tableInputWindow">
+        <h2>Please enter table dimensions</h2>
+        <label for="tableRows">Rows</label>
+        <input type="number" id="tableRows">
+        <label for="tableColumns">Columns</label>
+        <input type="number" id="tableColumns">
+        <div class="button-group">
+            <button id="saveTableDimensionsButton">SAVE</button>
+            <button id="cancelTableDimensionsButton">CANCEL</button>
+        </div>
+    </div>
+    <script>
+        const folderId = {{ folder.id }};
+        const tableId = {{ table_id|default:"null" }};  // Добавляем tableId
+    </script>
+    <script src="{% static 'catering/js/catering_table_view.js' %}"></script>
+</body>
+</html>

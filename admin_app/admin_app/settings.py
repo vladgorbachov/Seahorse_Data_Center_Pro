@@ -25,7 +25,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'admin_app.deck',
+    'admin_app.bridge',
     'admin_app.dashboard',
+    'admin_app.catering',
+    'admin_app.electrical',
+    'admin_app.engine',
 ]
 
 MIDDLEWARE = [
@@ -43,7 +47,14 @@ ROOT_URLCONF = 'admin_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'admin_app', 'dashboard', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'admin_app', 'dashboard'),
+                 os.path.join(BASE_DIR, 'templates'),
+                 os.path.join(BASE_DIR, 'deck', 'templates'),
+                 os.path.join(BASE_DIR, 'bridge', 'templates'),
+                 os.path.join(BASE_DIR, 'catering', 'templates'),
+                 os.path.join(BASE_DIR, 'electrical', 'templates'),
+                 os.path.join(BASE_DIR, 'engine', 'templates'),
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,6 +119,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'admin_app', 'static'),
     os.path.join(BASE_DIR, 'admin_app', 'deck', 'static'),
+    os.path.join(BASE_DIR, 'admin_app', 'bridge', 'static'),
+    os.path.join(BASE_DIR, 'admin_app', 'catering', 'static'),
+    os.path.join(BASE_DIR, 'admin_app', 'electrical', 'static'),
+    os.path.join(BASE_DIR, 'admin_app', 'engine', 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

@@ -5,7 +5,6 @@ from .models import Folder, Table, TableCell
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
 import json
-import shutil
 from django.db.models import Max
 import os
 import mimetypes
@@ -83,7 +82,7 @@ def folder_view(request, folder_id):
                 cell = TableCell.objects.filter(table=table, row=row_number, column=column_number).first()
                 row.append(cell)
             rows.append({'cells': row})
-    return render(request, 'folder_view.html',
+    return render(request, 'electrical_folder_view.html',
                   {'folder': folder, 'table': {'rows': rows} if table else None, 'table_id': table_id})
 
 
@@ -100,7 +99,7 @@ def table_view(request, folder_id):
                 cell = TableCell.objects.filter(table=table, row=row_number, column=column_number).first()
                 row.append(cell)
             rows.append({'cells': row})
-    return render(request, 'table_view.html',
+    return render(request, 'electrical_table_view.html',
                   {'folder': folder, 'table': {'rows': rows} if table else None, 'table_id': table_id})
 
 
@@ -190,74 +189,6 @@ def explorer_view(request, folder_id):
             'current_path': folder_path,
             'error_message': f'Error: {str(e)}'
         })
-
-
-@csrf_exempt
-def create_subfolder(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        parent_path = data.get('parent_path')
-        new_folder_name = data.get('new_folder_name')
-
-        # Проверяем, является ли parent_path путем к локальной директории или ID папки в базе данных
-        if parent_path and parent_path.startswith('file://'):
-            parent_path = parent_path.replace('file://', '')
-        elif parent_path:
-            try:
-                folder = Folder.objects.get(id=int(parent_path))
-                parent_path = folder.link.replace('file://', '')
-            except Folder.DoesNotExist:
-                return JsonResponse({'status': 'error', 'message': 'Parent folder not found'})
-        else:
-            return JsonResponse({'status': 'error', 'message': 'Invalid parent path'})
-
-        new_folder_path = os.path.join(parent_path, new_folder_name)
-
-        try:
-            # Создаем новую папку
-            os.makedirs(new_folder_path, exist_ok=True)
-
-            # Создаем новую запись в базе данных
-            new_folder = Folder(
-                name=new_folder_name,
-                link=f'file://{new_folder_path}',
-                is_local_link=True,
-                visible=True,
-                parent_folder_id=folder.id if 'folder' in locals() else None
-            )
-            new_folder.save()
-
-            return JsonResponse({'status': 'success', 'message': 'Subfolder created successfully'})
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)})
-
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
-
-
-def delete_subfolder(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        folder_path = data.get('folder_path')
-
-        try:
-            shutil.rmtree(folder_path)
-            return JsonResponse({'status': 'success', 'message': 'Subfolder deleted successfully'})
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)})
-
-
-def rename_subfolder(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        old_path = data.get('old_path')
-        new_name = data.get('new_name')
-        new_path = os.path.join(os.path.dirname(old_path), new_name)
-
-        try:
-            os.rename(old_path, new_path)
-            return JsonResponse({'status': 'success', 'message': 'Subfolder renamed successfully'})
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)})
 
 
 def get_folder_contents(request):
@@ -432,7 +363,7 @@ def get_file_info(request):
 
 def pdf_viewer(request):
     file_path = request.GET.get('file')
-    return render(request, 'pdf_viewer.html', {'file_path': file_path})
+    return render(request, 'electrical_pdf_viewer.html', {'file_path': file_path})
 
 
 

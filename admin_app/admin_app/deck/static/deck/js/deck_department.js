@@ -1,11 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded and parsed');
     const createFolderButton = document.getElementById('createFolderButton');
     const foldersContainer = document.getElementById('foldersContainer');
-
     const inputWindow = document.querySelector('.input-window');
     const folderNameInput = document.getElementById('folderNameInput');
     const inputSaveButton = document.getElementById('inputSaveButton');
     const inputCloseButton = document.getElementById('inputCloseButton');
+    const mainPageButton = document.getElementById('mainPageButton');
+
+
+    // Добавляем обработчик события для кнопки "Main Page"
+      if (mainPageButton) {
+        mainPageButton.addEventListener('click', () => {
+            console.log('Main Page button clicked');
+            window.location.href = 'http://127.0.0.1:8000';
+        });
+    } else {
+        console.error('Main Page button not found');
+    }
 
     createFolderButton.addEventListener('click', () => {
         inputWindow.style.display = 'block';
@@ -39,8 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
         folderNameInput.value = ''; // Очистить поле ввода
     });
 
+
+    window.onerror = function(message, source, lineno, colno, error) {
+    console.error('An error occurred:', message, 'Source:', source, 'Line:', lineno);
+    };
+
+
     function addFolderEventHandlers(folder) {
-        folder.addEventListener('dblclick', () => {
+        folder.addEventListener('click', () => {
             const folderId = folder.dataset.id;
             const url = folder.dataset.url;
             console.log('Folder URL:', url);

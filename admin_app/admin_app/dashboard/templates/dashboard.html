@@ -142,22 +142,22 @@
 
         .bridge-department {
             top: 26vh;
-            animation-delay: 1s;
+            animation-delay: 0.1s;
         }
 
         .catering-department {
             top: 38vh;
-            animation-delay: 2s;
+            animation-delay: 0.2s;
         }
 
         .engineering-department {
             top: 50vh;
-            animation-delay: 3s;
+            animation-delay: 0.3s;
         }
 
         .electrical-engineering-department {
             top: 62vh;
-            animation-delay: 4s;
+            animation-delay: 0.4s;
             line-height: 1.2;
         }
 
@@ -198,45 +198,54 @@
     </style>
 </head>
 <body>
-    {% load static %}
-    <div class="bg-video">
-        <video autoplay muted loop>
-            <source src="{% static 'video/DashboardBackground.mp4' %}" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-    </div>
-    <div class="header-text">
-        <span class="line">SEAHORSE DATA</span>
-        <span class="line line2">CENTER</span>
-    </div>
-    <a href="{% url 'deck_department' %}">
+{% load static %}
+<div class="bg-video">
+    <video autoplay muted loop>
+        <source src="{% static 'video/DashboardBackground.mp4' %}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+</div>
+<div class="header-text">
+    <span class="line">SEAHORSE DATA</span>
+    <span class="line line2">CENTER</span>
+</div>
+<a href="{% url 'deck_department' %}">
     <div class="department-text deck-department">
         <span class="line">DECK DEPARTMENT</span>
     </div>
-    </a>
+</a>
+<a href="{% url 'bridge_department' %}">
     <div class="department-text bridge-department">
         <span class="line">BRIDGE DEPARTMENT</span>
     </div>
+</a>
+<a href="{% url 'catering_department' %}">
     <div class="department-text catering-department">
         <span class="line">CATERING DEPARTMENT</span>
     </div>
-    <div class="department-text engineering-department">
-        <span class="line">ENGINEERING DEPARTMENT</span>
-    </div>
+</a>
+<a href="{% url 'engine_department' %}">
+<div class="department-text engineering-department">
+    <span class="line">ENGINEERING DEPARTMENT</span>
+</div>
+</a>
+<a href="{% url 'electrical_department' %}">
     <div class="department-text electrical-engineering-department">
         <span class="line">ELECTRICAL ENGINEERING</span>
         <span class="line2">DEPARTMENT</span>
     </div>
-    <div class="links">
-        <a href="https://apprise.deme-group.com/dashboard/overview" id="apprise" target="_blank">APPRISE</a>
-        <a href="https://www.imca-int.com" id="imca" target="_blank">IMCA</a>
-        <a href="https://imo.org" id="imo" target="_blank">IMO</a>
-        <a href="https://jr.chemwatch.net/chemwatch.web/Account/Login" id="chemwatch" target="_blank">CHEMWATCH</a>
-    </div>
-    <script>
-        window.onload = function() {
-            document.querySelector('.header-text').classList.add('fade-in');
-        };
-    </script>
+</a>
+
+<div class="links">
+    <a href="https://apprise.deme-group.com/dashboard/overview" id="apprise" target="_blank">APPRISE</a>
+    <a href="https://www.imca-int.com" id="imca" target="_blank">IMCA</a>
+    <a href="https://imo.org" id="imo" target="_blank">IMO</a>
+    <a href="https://jr.chemwatch.net/chemwatch.web/Account/Login" id="chemwatch" target="_blank">CHEMWATCH</a>
+</div>
+<script>
+    window.onload = function() {
+        document.querySelector('.header-text').classList.add('fade-in');
+    };
+</script>
 </body>
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table View</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'catering/css/catering_table_view.css' %}">
+</head>
+<body>
+    <header>
+        <button id="backButton" onclick="window.history.back();">BACK</button>
+        <h1>{{ folder.name }} - Table</h1>
+    </header>
+    <main>
+        {% if table %}
+        <table id="dataTable">
+            {% for row in table.rows %}
+            <tr>
+                {% for cell in row.cells %}
+                <td contenteditable="true" data-cell-id="{% if cell %}{{ cell.id }}{% endif %}">{% if cell %}{{
+                    cell.content }}{% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No table found. Create one using the button below.</p>
+        {% endif %}
+    </main>
+    <footer>
+        <button id="saveTableButton">SAVE</button>
+        <button id="deleteTableButton">DELETE TABLE</button>
+    </footer>
+    <div class="input-window">
+        <h2>Please enter table dimensions</h2>
+        <div class="input-group">
+            <label for="tableRows">Rows</label>
+            <input type="number" id="tableRows">
+        </div>
+        <div class="input-group">
+            <label for="tableColumns">Columns</label>
+            <input type="number" id="tableColumns">
+        </div>
+        <div class="button-group">
+            <button id="saveTableDimensionsButton">SAVE</button>
+            <button id="cancelTableDimensionsButton">CANCEL</button>
+        </div>
+    </div>
+    <script src="{% static 'catering/js/catering_table_view.js' %}"></script>
+</body>
+</html>

@@ -19,8 +19,8 @@ function loadFolderContents(folderId, subfolderPath = null) {
                 displayFiles(data.contents);
                 document.getElementById('currentPath').value = data.current_path;
                 sortFiles(sortBy.value);
-                viewMode.value = 'list';
-                fileList.className = 'file-list list-view';
+                viewMode.value = 'grid';
+                fileList.className = 'file-list grid-view';
             } else {
                 alert(data.message);
             }
@@ -132,23 +132,19 @@ function handleContextMenu(e, file) {
         { id: 'openFile', text: 'Open', action: () => openFile(file) },
         { id: 'renameFile', text: 'Rename', action: () => renameFile(file) },
         { id: 'deleteFile', text: 'Delete', action: () => deleteFile(file) },
-        { id: 'fileInfo', text: 'Information', action: () => showFileInfo(file) },
-        { id: 'createFolder', text: 'Create Folder', action: () => createSubfolder() }
+        { id: 'fileInfo', text: 'Information', action: () => showFileInfo(file) }
     ];
-
-    if (file.is_dir) {
-        menuItems.push(
-            { id: 'deleteFolder', text: 'Delete Folder', action: () => deleteSubfolder(file.id) },
-            { id: 'renameFolder', text: 'Rename Folder', action: () => renameSubfolder(file.id) }
-        );
-    }
 
     menuItems.forEach(item => {
         const menuItem = document.createElement('a');
         menuItem.href = '#';
         menuItem.id = item.id;
         menuItem.textContent = item.text;
-        menuItem.onclick = () => { item.action(); contextMenu.style.display = 'none'; };
+        menuItem.onclick = (e) => {
+            e.preventDefault();
+            item.action();
+            contextMenu.style.display = 'none';
+        };
         contextMenu.appendChild(menuItem);
     });
 
@@ -256,8 +252,8 @@ function sortFiles(criteria) {
     files.sort((a, b) => {
         let aValue, bValue;
         if (criteria === 'date') {
-            aValue = new Date(a.querySelector('.file-date').textContent);
-            bValue = new Date(b.querySelector('.file-date').textContent);
+            aValue = new Date(b.querySelector('.file-date').textContent);
+            bValue = new Date(a.querySelector('.file-date').textContent);
         } else if (criteria === 'size') {
             aValue = parseFloat(a.querySelector('.file-size').textContent);
             bValue = parseFloat(b.querySelector('.file-size').textContent);
@@ -291,84 +287,6 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function createSubfolder() {
-    const folderName = prompt("Enter new folder name:");
-    if (folderName) {
-        fetch('/deck/create_subfolder/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken')
-            },
-            body: JSON.stringify({
-                parent_path: currentPath,
-                new_folder_name: folderName
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                alert('Folder created successfully!');
-                loadFolderContents(currentFolderId, currentPath);
-            } else {
-                alert(data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred while creating the folder.');
-        });
-    }
-}
-
-function deleteSubfolder(folderPath) {
-    if (confirm("Are you sure you want to delete this folder?")) {
-        fetch('/deck/delete_subfolder/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken')
-            },
-            body: JSON.stringify({
-                folder_path: folderPath
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                loadFolderContents(currentFolderId, currentPath);
-            } else {
-                alert(data.message);
-            }
-        });
-    }
-}
-
-function renameSubfolder(oldPath) {
-    const newName = prompt("Enter new folder name:");
-    if (newName) {
-        fetch('/deck/rename_subfolder/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken')
-            },
-            body: JSON.stringify({
-                old_path: oldPath,
-                new_name: newName
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                loadFolderContents(currentFolderId, currentPath);
-            } else {
-                alert(data.message);
-            }
-        });
-    }
-}
-
 function goBack() {
     if (currentPath) {
         const parentPath = currentPath.split('/').slice(0, -1).join('/');
@@ -379,6 +297,8 @@ function goBack() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM fully loaded and parsed');
+
     fileList = document.getElementById('fileList');
     viewMode = document.getElementById('viewMode');
     sortBy = document.getElementById('sortBy');
@@ -386,11 +306,11 @@ document.addEventListener('DOMContentLoaded', function() {
     contextMenu = document.getElementById('contextMenu');
 
     if (fileList) {
-        fileList.className = 'file-list list-view';
+        fileList.className = 'file-list grid-view';
     }
 
     if (viewMode) {
-        viewMode.value = 'list';
+        viewMode.value = 'grid';
         viewMode.addEventListener('change', () => {
             if (fileList) {
                 fileList.className = `file-list ${viewMode.value}-view`;
@@ -427,11 +347,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (folderId) {
             loadFolderContents(folderId);
         }
-    }
-
-    const createFolderBtn = document.getElementById('createFolderBtn');
-    if (createFolderBtn) {
-        createFolderBtn.addEventListener('click', createSubfolder);
     }
 
     const backButton = document.getElementById('backButton');

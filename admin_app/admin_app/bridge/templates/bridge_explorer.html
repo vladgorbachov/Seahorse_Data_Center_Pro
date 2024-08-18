@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer - {{ folder.name }}</title>
+    <link rel="stylesheet" href="/static/bridge/css/bridge_explorer.css">
+</head>
+<body>
+    <header>
+        <button id="backButton">BACK</button>
+        <h1>{{ folder.name }}</h1>
+    </header>
+
+    <div class="explorer-container">
+        <div class="file-container">
+            {% if error_message %}
+                <div class="error-message">
+                    {{ error_message }}
+                </div>
+            {% else %}
+                <div id="fileList" class="file-list grid-view">
+                    <!-- Файлы будут добавлены здесь динамически -->
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        <div class="controls">
+            <select id="viewMode">
+                <option value="grid">Grid View</option>
+                <option value="list">List View</option>
+            </select>
+            <select id="sortBy">
+                <option value="name">Sort by Name</option>
+                <option value="date">Sort by Date</option>
+                <option value="size">Sort by Size</option>
+                <option value="type">Sort by Type</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="Search files...">
+        </div>
+    </footer>
+
+    <div id="contextMenu" class="context-menu">
+    <!-- Пустой div, содержимое будет добавлено динамически -->
+    </div>
+
+    <input type="hidden" id="currentPath" data-folder-id="{{ folder.id }}" value="{{ current_path }}">
+
+    <script src="/static/bridge/js/bridge_explorer.js"></script>
+</body>
+</html>

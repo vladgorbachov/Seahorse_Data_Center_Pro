@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ folder.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'catering/css/catering_department.css' %}">
+    <style>
+        body, html {
+            background: url("{% static 'background/bridge_bgrd.png' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .folder-content {
+            padding: 20px;
+            margin-top: 60px; /* Отступ для хедера */
+            margin-bottom: 60px; /* Отступ для футера */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="backButton" onclick="window.history.back();">BACK</button>
+        <h1>{{ folder.name }}</h1>
+    </header>
+    <main class="folder-content">
+        <p>Folder Path: {{ folder.link }}</p>
+        <ul>
+            {% for item in content %}
+                <li>{{ item }}</li>
+            {% empty %}
+                <li>No content found</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

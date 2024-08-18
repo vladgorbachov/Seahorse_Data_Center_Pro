@@ -4,20 +4,123 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a92e5c-f364-4dd0-adb8-98f6a24fecfa" name="Changes" comment="v_04_explorer_like view files in folders implemented">
-      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/pdf_viewer.html" afterDir="false" />
+    <list default="true" id="b7a92e5c-f364-4dd0-adb8-98f6a24fecfa" name="Changes" comment="v_05_support pdf files in web page">
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/static/bridge/css/bridge_department.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/static/bridge/css/bridge_explorer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/static/bridge/css/bridge_table_view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/static/bridge/js/bridge_department.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/static/bridge/js/bridge_explorer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/static/bridge/js/bridge_table_view.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/templates/bridge_department.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/templates/bridge_explorer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/templates/bridge_folder_content_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/templates/bridge_folder_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/templates/bridge_pdf_viewer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/templates/bridge_side_panel_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/templates/bridge_table_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/static/catering/css/catering_department.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/static/catering/css/catering_explorer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/static/catering/css/catering_table_view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/static/catering/js/catering_department.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/static/catering/js/catering_explorer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/static/catering/js/catering_table_view.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/templates/catering_department.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/templates/catering_explorer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/templates/catering_folder_content_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/templates/catering_folder_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/templates/catering_pdf_viewer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/templates/catering_side_panel_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/templates/catering_table_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/electrical/css/electrical_department.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/electrical/css/electrical_explorer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/electrical/css/electrical_table_view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/electrical/js/electrical_department.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/electrical/js/electrical_explorer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/electrical/js/electrical_table_view.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/android-chrome-192x192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/android-chrome-512x512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/apple-touch-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/archive.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/audio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/excel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/favicon-16x16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/favicon-32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/folder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/pdf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/txt-file.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/unknown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/video.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/word.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/templates/electrical_department.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/templates/electrical_explorer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/templates/electrical_folder_content_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/templates/electrical_folder_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/templates/electrical_pdf_viewer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/templates/electrical_side_panel_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/templates/electrical_table_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/engine/css/engine_department.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/engine/css/engine_explorer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/engine/css/engine_table_view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/engine/js/engine_department.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/engine/js/engine_explorer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/engine/js/engine_table_view.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/android-chrome-192x192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/android-chrome-512x512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/apple-touch-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/archive.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/audio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/excel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/favicon-16x16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/favicon-32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/folder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/pdf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/txt-file.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/unknown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/video.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/word.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/templates/engine_department.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/templates/engine_explorer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/templates/engine_folder_content_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/templates/engine_folder_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/templates/engine_pdf_viewer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/templates/engine_side_panel_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/templates/engine_table_view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/bridge/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/bridge/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/bridge/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/admin_app/dashboard/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/dashboard/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/migrations/0002_folder_visible.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/migrations/0003_table_tablecell.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/migrations/0004_folder_is_local_link_alter_folder_link.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/deck_department.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/deck_department.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/explorer.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/css/explorer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/deck_department.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/deck_department.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/explorer.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/js/explorer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/deck_department.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/deck_department.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/explorer.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/explorer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/side_panel_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/templates/side_panel_view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin_app/admin_app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/staticfiles.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/staticfiles.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/staticfiles.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,21 +167,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/volod/PycharmProjects/Market_Analyzer&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/volod/PycharmProjects/Seahorse_Data_Center_Pro/admin_app/admin_app/engine/templates"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\deck\static\deck\shortcuts" />
-      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\static\shortcuts" />
-      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\static" />
-      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\deck\static\deck" />
+      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\engine\templates" />
+      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\engine\static\engine" />
+      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\engine\static" />
+      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\electrical\static\electrical" />
+      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\electrical\static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\bridge\static\bridge" />
@@ -166,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719690494232</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="v_05_support pdf files in web page">
+      <option name="closed" value="true" />
+      <created>1723593492541</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1723593492541</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,6 +298,7 @@
     <MESSAGE value="v_03_table fixed and side menu added" />
     <MESSAGE value="v_03_side menu time and date widgets added and adjusted" />
     <MESSAGE value="v_04_explorer_like view files in folders implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="v_04_explorer_like view files in folders implemented" />
+    <MESSAGE value="v_05_support pdf files in web page" />
+    <option name="LAST_COMMIT_MESSAGE" value="v_05_support pdf files in web page" />
   </component>
 </project>
