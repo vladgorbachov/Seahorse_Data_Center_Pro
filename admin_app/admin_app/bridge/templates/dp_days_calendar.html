@@ -1,0 +1,43 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DP Days Calendar</title>
+    <link rel="stylesheet" href="{% static 'bridge/css/dp_days_calendar.css' %}">
+</head>
+<body>
+    <header>
+        <button id="backButton">BACK</button>
+        <h1>DP DAYS CALENDAR</h1>
+        <button id="mainPageButton">MAIN PAGE</button>
+    </header>
+
+    <main>
+        <div id="calendarContainer">
+            <div id="calendarHeader">
+                <button id="prevMonth">&lt;</button>
+                <h2 id="currentMonth"></h2>
+                <button id="nextMonth">&gt;</button>
+            </div>
+            <div id="calendar"></div>
+        </div>
+
+        <div id="dpHoursSummary">
+            <p>DP Hours this month: <span id="monthHours">0</span></p>
+            <p>DP Hours this year: <span id="yearHours">0</span></p>
+        </div>
+    </main>
+
+    <div id="hoursInputWindow" class="input-window" style="display: none;">
+        <h3>Enter DP Hours</h3>
+        <input type="number" id="dpHoursInput" min="0" max="24" value="0">
+        <div class="button-group">
+            <button id="saveHours">Save</button>
+            <button id="cancelHours">Cancel</button>
+        </div>
+    </div>
+
+    <script src="{% static 'bridge/js/dp_days_calendar.js' %}"></script>
+</body>
+</html>

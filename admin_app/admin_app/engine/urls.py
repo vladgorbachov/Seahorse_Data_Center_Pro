@@ -19,5 +19,6 @@ urlpatterns = [
     path('delete_file/', views.delete_file, name='engine_delete_file'),
     path('get_file_info/', views.get_file_info, name='engine_get_file_info'),
     path('pdf-viewer/', views.pdf_viewer, name='engine_pdf_viewer'),
+    path('get_fuel_water_status/', views.get_fuel_water_status, name='get_fuel_water_status'),
 ]
 

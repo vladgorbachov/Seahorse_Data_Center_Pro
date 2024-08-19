@@ -10,6 +10,7 @@ import os
 import mimetypes
 from datetime import datetime
 import subprocess
+from .excel_parser import parse_excel_file
 from django.views.decorators.http import require_http_methods
 from .models import DPHours
 
@@ -403,4 +404,19 @@ def save_dp_hours(request):
         return JsonResponse({'success': False, 'error': str(e)})
 
 
-
+def get_fuel_water_status(request):
+    try:
+        data = parse_excel_file()
+        if data:
+            return JsonResponse(data)
+        else:
+            return JsonResponse({'error': 'No valid data found in the Excel file.'}, status=404)
+    except FileNotFoundError:
+        return JsonResponse({'error': 'Excel file not found.'}, status=404)
+    except KeyError as e:
+        return JsonResponse({'error': f'Missing column in Excel file: {str(e)}'}, status=500)
+    except ValueError as e:
+        return JsonResponse({'error': f'Invalid data in Excel file: {str(e)}'}, status=500)
+    except Exception as e:
+        print(f"Unexpected error in get_fuel_water_status: {str(e)}")
+        return JsonResponse({'error': 'An unexpected error occurred while processing the data.'}, status=500)

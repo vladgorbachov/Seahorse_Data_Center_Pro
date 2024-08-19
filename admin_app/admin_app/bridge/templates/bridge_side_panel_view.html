@@ -33,6 +33,40 @@
         </div>
         <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
     </div>
+    <div class="side-panel-section fuel-water-section">
+        <h3>BUNKERS READINGS</h3>
+        <div class="data-date">Date of sounding: <span id="dataDate"></span></div>
+        <div class="status-container">
+            <div class="fuel-section">
+                <div class="tanks-row">
+                    <span class="tank-label">FO PS Tank</span>
+                    <span class="tank-label">FO SB Tank</span>
+                </div>
+                <div class="tank-values">
+                    <span class="tank-value" id="fuelPortsideTank"></span>
+                    <span class="tank-value" id="fuelStarboardTank"></span>
+                </div>
+                <div class="total-row">
+                    <span class="total-label">Total Fuel:</span>
+                    <span class="total-value" id="fuelTotal"></span>
+                </div>
+            </div>
+            <div class="water-section">
+                <div class="tanks-row">
+                    <span class="tank-label">FW PS Tank</span>
+                    <span class="tank-label">FW SB Tank</span>
+                </div>
+                <div class="tank-values">
+                    <span class="tank-value" id="waterPortsideTank"></span>
+                    <span class="tank-value" id="waterStarboardTank"></span>
+                </div>
+                <div class="total-row">
+                    <span class="total-label">Total Water:</span>
+                    <span class="total-value" id="waterTotal"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="side-panel-buttons">
         <a href="{% url 'deck_department' %}"

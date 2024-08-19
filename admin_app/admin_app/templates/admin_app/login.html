@@ -1,0 +1,110 @@
+<!-- templates/admin_app/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Основные стили для страницы */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('/static/background/login_page_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #FFFFFF;
+        }
+
+        /* Стили для формы авторизации */
+        .login-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        .login-container input[type="text"]::placeholder,
+        .login-container input[type="password"]::placeholder {
+            color: #999;
+        }
+
+        .login-container button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: none;
+            background: linear-gradient(to right, #1e90ff, #000000);
+            color: #FFF;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-container button[type="submit"]:hover {
+            background: linear-gradient(to right, #000000, #1e90ff);
+        }
+
+        /* Стиль футера */
+        .footer {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+}
+
+
+    </style>
+</head>
+<body>
+<main>
+    <div class="login-container">
+        <h2>Data Center</h2>
+        <h2>Login</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</main>
+<footer style="position: fixed; bottom: 0; width: 100%; text-align: center; padding: 10px; background-color: rgba(2, 3, 41, 0.4);backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);">
+    <p>&copy; 2024 DeLion Software Solutions. All rights reserved.</p>
+</footer>
+</body>
+</html>

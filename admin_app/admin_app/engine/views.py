@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
 import json
 from django.db.models import Max
+from .excel_parser import parse_excel_file
 import os
 import mimetypes
 from datetime import datetime
@@ -364,6 +365,24 @@ def get_file_info(request):
 def pdf_viewer(request):
     file_path = request.GET.get('file')
     return render(request, 'engine_pdf_viewer.html', {'file_path': file_path})
+
+
+def get_fuel_water_status(request):
+    try:
+        data = parse_excel_file()
+        if data:
+            return JsonResponse(data)
+        else:
+            return JsonResponse({'error': 'No valid data found in the Excel file.'}, status=404)
+    except FileNotFoundError:
+        return JsonResponse({'error': 'Excel file not found.'}, status=404)
+    except KeyError as e:
+        return JsonResponse({'error': f'Missing column in Excel file: {str(e)}'}, status=500)
+    except ValueError as e:
+        return JsonResponse({'error': f'Invalid data in Excel file: {str(e)}'}, status=500)
+    except Exception as e:
+        print(f"Unexpected error in get_fuel_water_status: {str(e)}")
+        return JsonResponse({'error': 'An unexpected error occurred while processing the data.'}, status=500)
 
 
 

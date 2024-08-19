@@ -40,6 +40,8 @@ button, #backButton, #mainPageButton {
     margin: 0 10px;
     border-radius: 25px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    font-weight: bold;
 }
 
 button:hover, #backButton:hover, #mainPageButton:hover {

@@ -157,14 +157,14 @@ main {
     margin-left: 20px; /* Отступ слева от grid-container */
     display: flex;
     flex-direction: column;
-    height: 95vh; /* 60% высоты от боковой панели */
+    height: 130vh; /* 60% высоты от боковой панели */
     justify-content: space-between;
 }
 
 .side-panel-buttons {
     display: flex;
     flex-direction: column;
-    height: 65%;
+    height: 70%;
     justify-content: space-around;
 }
 
@@ -387,4 +387,72 @@ button, #backButton {
 
 
 /* ... (существующие стили) ... */
+.fuel-water-section {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.fuel-water-section h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.data-date {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.status-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fuel-section, .water-section {
+    width: 100%;
+}
+
+.tanks-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.tank-label {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.tank-values {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.tank-value {
+    font-size: 1.1em;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 5px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 5px;
+}
+
+.total-label {
+    font-size: 0.9em;
+}
+
+.total-value {
+    font-size: 1.1em;
+}

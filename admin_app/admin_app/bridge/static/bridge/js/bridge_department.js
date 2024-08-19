@@ -238,3 +238,45 @@ function showAlert(message) {
         document.body.removeChild(alertBox);
     }, 3000);
 }
+
+
+function updateFuelWaterStatus() {
+    fetch('/bridge/get_fuel_water_status/')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+                displayErrorMessage('Error loading data');
+                return;
+            }
+            document.getElementById('dataDate').textContent = new Date(data.date).toLocaleDateString();
+            document.getElementById('fuelPortsideTank').textContent = data.fuel_ps_tank;
+            document.getElementById('fuelStarboardTank').textContent = data.fuel_sb_tank;
+            document.getElementById('fuelTotal').textContent = data.fuel_total;
+            document.getElementById('waterPortsideTank').textContent = data.water_ps_tank;
+            document.getElementById('waterStarboardTank').textContent = data.water_sb_tank;
+            document.getElementById('waterTotal').textContent = data.water_total;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            displayErrorMessage('Error loading data');
+        });
+}
+
+function displayErrorMessage(message) {
+    document.getElementById('dataDate').textContent = 'N/A';
+    document.querySelectorAll('.status-item span:last-child').forEach(span => {
+        span.textContent = message;
+    });
+}
+
+// Вызываем функцию при загрузке страницы
+document.addEventListener('DOMContentLoaded', updateFuelWaterStatus);
+
+// Обновляем данные каждые 5 минут
+setInterval(updateFuelWaterStatus, 300000);

@@ -22,5 +22,6 @@ urlpatterns = [
     path('dp_days_calendar/', views.dp_days_calendar, name='dp_days_calendar'),
     path('get_dp_hours/', views.get_dp_hours, name='get_dp_hours'),
     path('save_dp_hours/', views.save_dp_hours, name='save_dp_hours'),
+    path('get_fuel_water_status/', views.get_fuel_water_status, name='get_fuel_water_status'),
 ]
 
