@@ -1,0 +1,133 @@
+/* dp_days_calendar.css */
+
+/* Общие стили */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Trebuchet MS', sans-serif;
+    display: flex;
+    flex-direction: column;
+    color: #FFFFFF;
+}
+
+/* Стиль хедера */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 3em;
+}
+
+/* Стили для кнопок */
+button, #backButton, #mainPageButton {
+    background: linear-gradient(to bottom right, #1e90ff, #ffffff);
+    border: none;
+    z-index: 9999;
+    padding: 10px 20px;
+    color: #000;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 10px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(255, 255, 255, 0.5);
+}
+
+button:hover, #backButton:hover, #mainPageButton:hover {
+    background: linear-gradient(to bottom right, #1e90ff, #ffffff);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(255, 255, 255, 0.7);
+}
+
+/* Стили для кнопки BACK */
+#backButton {
+    position: absolute;
+    left: 20px;
+}
+
+/* Стили для кнопки MAIN PAGE */
+#mainPageButton {
+    position: absolute;
+    right: 20px;
+}
+
+#calendarContainer {
+    width: 80vw;
+    height: 80vh;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#calendar {
+    height: calc(100% - 60px);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#calendar div {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+#calendar div:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+#dpHoursSummary {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    width: 80%;
+}
+
+
+#hoursInputWindow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom right, #1e90ff, #000000);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+#hoursInputWindow input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#hoursInputWindow .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}

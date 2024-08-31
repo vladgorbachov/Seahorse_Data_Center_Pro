@@ -1,0 +1,211 @@
+/* dp_days_calendar.css */
+
+/* Общие стили */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Trebuchet MS', sans-serif;
+    display: flex;
+    flex-direction: column;
+    color: #FFFFFF;
+    background: url("/static/background/bridge_bgrd.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Стиль хедера */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 3em;
+}
+
+/* Стили для кнопок */
+button, #backButton, #mainPageButton, #prevMonth, #nextMonth {
+    background: linear-gradient(to bottom right, #1e90ff, #ffffff);
+    border: none;
+    z-index: 9999;
+    padding: 10px 20px;
+    color: #000;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 10px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:hover, #backButton:hover, #mainPageButton:hover, #prevMonth:hover, #nextMonth:hover {
+    background: linear-gradient(to bottom right, #1e90ff, #ffffff);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 -4px 6px rgba(255, 255, 255, 0.7);
+}
+
+/* Стили для кнопки BACK */
+#backButton {
+    position: absolute;
+    left: 20px;
+}
+
+/* Стили для кнопки MAIN PAGE */
+#mainPageButton {
+    position: absolute;
+    right: 20px;
+}
+
+/* Основной контент */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 140px); /* Вычитаем высоту хедера и футера */
+    padding: 20px;
+}
+
+/* Контейнер календаря */
+#calendarContainer {
+    width: 75vw;
+    height: 75vh;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Заголовок календаря */
+#calendarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#currentMonth {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+/* Сетка календаря */
+#calendar {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    background-color: rgba(4, 4, 4, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#calendar div {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#calendar div:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+#calendar div.has-dp-hours {
+    background-color: rgba(144, 238, 144, 0.5); /* Светло-зеленый цвет */
+}
+
+.dp-hours {
+    font-size: 0.9em;
+    color: #000031;
+    align-self: flex-end;
+}
+
+/* Сводка DP часов */
+#dpHoursSummary {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    width: 75vw;
+    text-align: center;
+}
+
+#dpHoursSummary p {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+/* Окно ввода часов */
+#hoursInputWindow {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom right, #1e90ff, #000000);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 300px;
+}
+
+#hoursInputWindow h3 {
+    margin-top: 0;
+    color: #ffffff;
+    text-align: center;
+}
+
+#hoursInputWindow input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+#hoursInputWindow .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#hoursInputWindow button {
+    padding: 10px 20px;
+    width: 45%;
+}
+
+/* Стиль футера */
+footer {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
