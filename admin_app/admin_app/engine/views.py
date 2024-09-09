@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.http import FileResponse
@@ -13,6 +14,7 @@ from datetime import datetime
 import subprocess
 
 
+@login_required
 def engine_department(request):
     folders = Folder.objects.filter(visible=True)
     return render(request, 'engine_department.html', {'folders': folders})
