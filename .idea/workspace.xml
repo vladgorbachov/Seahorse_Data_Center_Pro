@@ -4,8 +4,55 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a92e5c-f364-4dd0-adb8-98f6a24fecfa" name="Changes" comment="v 1.2 Bunker readings at side panel">
+    <list default="true" id="b7a92e5c-f364-4dd0-adb8-98f6a24fecfa" name="Changes" comment="v 1.3 Bunker readings at side panel">
+      <change afterPath="$PROJECT_DIR$/admin_app/SeahorseDataCenterPro.spec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/middleware.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/admin_app/settings_loader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_app/project_structure.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/bridge/templates/bridge_department.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/bridge/templates/bridge_department.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/static/shortcuts/android-chrome-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/static/shortcuts/android-chrome-512x512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/static/shortcuts/apple-touch-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/static/shortcuts/favicon-16x16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/static/shortcuts/favicon-32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/static/shortcuts/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/static/shortcuts/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/catering/templates/catering_department.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/catering/templates/catering_department.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/shortcuts/android-chrome-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/shortcuts/android-chrome-512x512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/shortcuts/apple-touch-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/shortcuts/favicon-16x16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/shortcuts/favicon-32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/shortcuts/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/deck/static/deck/shortcuts/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/android-chrome-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/android-chrome-512x512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/apple-touch-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/favicon-16x16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/favicon-32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/static/shortcuts/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/electrical/templates/electrical_department.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/electrical/templates/electrical_department.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/android-chrome-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/android-chrome-512x512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/apple-touch-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/favicon-16x16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/favicon-32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/static/shortcuts/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/engine/templates/engine_department.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/engine/templates/engine_department.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcuts/android-chrome-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcuts/android-chrome-512x512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcuts/apple-touch-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcuts/favicon-16x16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcuts/favicon-32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/static/shortcuts/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/static/shortcuts/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/admin_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/admin_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/bridge/css/bridge_department.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/bridge/css/bridge_department.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/bridge/js/bridge_department.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/bridge/js/bridge_department.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/deck/shortcuts/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/deck/shortcuts/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/engine/css/engine_department.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/engine/css/engine_department.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/engine/js/engine_department.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/engine/js/engine_department.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/shortcuts/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/shortcuts/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_app/staticfiles/staticfiles.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin_app/staticfiles/staticfiles.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,15 +99,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/volod/PycharmProjects/Seahorse_Data_Center_Pro/admin_app/admin_app/bridge"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/volod/PycharmProjects/Seahorse_Data_Center_Pro/admin_app/admin_app/bridge&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\bridge" />
@@ -70,9 +118,9 @@
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\electrical\static\electrical" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app" />
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\engine" />
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\templates\admin_app" />
-      <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app" />
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\bridge\static\bridge" />
       <recent name="C:\Users\volod\PycharmProjects\Seahorse_Data_Center_Pro\admin_app\admin_app\deck\static\deck" />
     </key>
@@ -80,7 +128,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-8336bb23522e-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.19072.16" />
+        <option value="bundled-python-sdk-98f27166c754-ba05f1cad1b1-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.21829.153" />
       </set>
     </attachedChunks>
   </component>
@@ -197,7 +245,23 @@
       <option name="project" value="LOCAL" />
       <updated>1724044119996</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="v 1.3 Bunker readings at side panel">
+      <option name="closed" value="true" />
+      <created>1725085270467</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1725085270467</updated>
+    </task>
+    <task id="LOCAL-00015" summary="v 1.3 Bunker readings at side panel">
+      <option name="closed" value="true" />
+      <created>1725085546955</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1725085546955</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -221,6 +285,7 @@
     <MESSAGE value="v 1.0 beta" />
     <MESSAGE value="v 1.1 DP Hours calendar" />
     <MESSAGE value="v 1.2 Bunker readings at side panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="v 1.2 Bunker readings at side panel" />
+    <MESSAGE value="v 1.3 Bunker readings at side panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="v 1.3 Bunker readings at side panel" />
   </component>
 </project>

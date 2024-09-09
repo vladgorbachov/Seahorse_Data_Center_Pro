@@ -1,7 +1,9 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include
 from .dashboard.views import dashboard_view
 from .views import CustomLoginView
+from django.urls import path, re_path
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,4 +15,5 @@ urlpatterns = [
     path('engine/', include('admin_app.engine.urls')),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('dashboard/', dashboard_view, name='dashboard'),
+    re_path(r'^.*$', RedirectView.as_view(url='/login/', permanent=False), name='catch_all'),
 ]

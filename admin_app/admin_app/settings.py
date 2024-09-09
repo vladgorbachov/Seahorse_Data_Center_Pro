@@ -1,4 +1,5 @@
 import os
+from admin_app.admin_app.settings_loader import load_settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +40,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_app.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'admin_app.urls'
@@ -72,14 +74,16 @@ WSGI_APPLICATION = 'admin_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+custom_settings = load_settings()
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'seahorse',
-        'USER': 'postgres',
-        'PASSWORD': 'wolf155',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': custom_settings['DATABASE']['NAME'],
+        'USER': custom_settings['DATABASE']['USER'],
+        'PASSWORD': custom_settings['DATABASE']['PASSWORD'],
+        'HOST': custom_settings['DATABASE']['HOST'],
+        'PORT': custom_settings['DATABASE']['PORT'],
     }
 }
 
